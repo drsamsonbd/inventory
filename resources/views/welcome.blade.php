@@ -16,7 +16,7 @@
 </head>
 
 <body id="page-top">
-
+ <div id="app">
   <div id="wrapper">
     <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
@@ -301,13 +301,13 @@
 
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
-        <div id="app">
+       
         <router-view></router-view>
  
-         </div>
+        </div>
         </div>
         <!---Container Fluid-->
-      </div>
+      
  
     </div>
   </div>
@@ -317,6 +317,7 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+  <script src="{{ mix('/js/app.js') }}"></script>
   <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('backend/vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
