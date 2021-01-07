@@ -19722,7 +19722,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "font-weight-bold small",
-                          attrs: { to: "/login" }
+                          attrs: { to: "/" }
                         },
                         [_vm._v("Back to Login!")]
                       )
@@ -19773,7 +19773,7 @@ var staticRenderFns = [
             staticClass: "btn btn-primary btn-block",
             attrs: { href: "index.html" }
           },
-          [_vm._v("Forget Password")]
+          [_vm._v("Forget Password!")]
         )
       ])
     ])
@@ -35198,9 +35198,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
-  el: '#app',
   router: router
-});
+}).$mount('#app');
 
 /***/ }),
 
@@ -35401,7 +35400,7 @@ var routes = [{
 }, {
   path: '/forget',
   component: forget,
-  name: '/forget'
+  name: 'forget'
 }];
 
 /***/ }),

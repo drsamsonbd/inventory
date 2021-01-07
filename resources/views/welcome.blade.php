@@ -289,10 +289,10 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="login.html">
+                <router-link to="/" class="dropdown-item" >
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
-                </a>
+                </router-link>
               </div>
             </li>
           </ul>
@@ -304,20 +304,21 @@
        
         <router-view></router-view>
  
-        </div>
-        </div>
+            </div>
+          </div>
+      </div> 
         <!---Container Fluid-->
       
  
     </div>
   </div>
 </div>
-</div>
+
   <!-- Scroll to top -->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-  <script src="{{ mix('/js/app.js') }}"></script>
+
   <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('backend/vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -325,8 +326,7 @@
   <script src="{{asset('backend/js/ruang-admin.min.js')}}"></script>
   <script src="{{asset('backend/vendor/chart.js/Chart.min.js')}}"></script>
   <script src="{{asset('backend/js/demo/chart-area-demo.js')}}"></script>  
-  <script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  
 </body>
 
 </html>

@@ -16,12 +16,12 @@
                         placeholder="Enter Existing Email Address">
                     </div>                    
                     <div class="form-group">
-                      <a href="index.html" class="btn btn-primary btn-block">Forget Password</a>
+                      <a href="index.html" class="btn btn-primary btn-block">Forget Password!</a>
                     </div>    
                   </form>
                   <hr>
                   <div class="text-center">
-                    <router-link to="/login" class="font-weight-bold small">Back to Login!</router-link>
+                    <router-link to="/" class="font-weight-bold small">Back to Login!</router-link>
                   </div>
                   <div class="text-center">
                   </div>
