@@ -104,7 +104,8 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
             'name' => auth()->user()->name,
-            'email' => auth()->user()->email
+            'email' => auth()->user()->email,
+            'user_id' => auth()->user()->id,
         ]);
     }
 }

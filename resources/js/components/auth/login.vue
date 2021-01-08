@@ -14,9 +14,11 @@
                     <div class="form-group">
                       <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                         placeholder="Enter Email Address" v-model="form.email">
+                        <small class="text-danger" v-if="errors.email">{{errors.email[0]}}</small>
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password"  v-model="form.password">
+                    <small class="text-danger" v-if="errors.password">{{errors.password[0]}}</small>
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
@@ -32,10 +34,9 @@
                   <hr>
                   <div class="text-center">
                     <router-link to="/forget" class="font-weight-bold small">Forget Password</router-link>
-                  </div>
-                  <hr>
-                   <div class="form-group">
-                      <router-link to="/register" class="btn btn-primary btn-block">Register</router-link>
+                  </div>                
+                   <div class="text-center">
+                      <router-link to="/register" class="font-weight-bold small">Register</router-link>
                     </div> 
                   <div class="text-center">
                   </div>
@@ -52,19 +53,40 @@
 
 <script type="text/javascript">
 export default{
+  created(){
+    if(User.loggedIn()){
+      this.$router.push({name:'home'})
+    }
+  },
+
 data(){
   return{
         form:{
           email: null,
           password: null
-        }
+        },
+        errors:{}
       }
 } ,
       methods:{
         login(){
           axios.post('/api/auth/login', this.form)
-          .then(res=> console.log(res.data))
-          .catch(error=> console.log(error.response.data))
+          .then(res=> {
+            User.responseAfterLogin(res)
+            Toast.fire({
+              icon: 'success',
+              title: 'Signed in successfully'
+})
+            this.$router.push({name:'home'})            
+        
+            })
+          .catch(error=> this.errors = error.response.data.errors)
+          .catch(
+            Toast.fire({
+              icon: 'warning',
+              title: 'Invalid email or password!'
+            })
+          )
         }
       }
   }

@@ -2,10 +2,16 @@ class Appstorage{
         storeToken(token){
             localStorage.setItem('token',token);
         }
-        storeToken(user){
+        storeUser(user){
             localStorage.setItem('user',user);
 
         }
+        store(token, user){
+            this.storeToken(token)
+            this.storeUser(user)
+
+        }
+
         clear(){
 
             localStorage.removeItem('token')
