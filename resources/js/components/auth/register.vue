@@ -8,9 +8,9 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Register</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Daftar Pengguna</h1>
                   </div>
-                  <form class="user" @submit.prevent="register">
+                  <form class="user" @submit="register">
                     <div class="form-group">
                       <label>Full Name</label>
                       <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Full Name" v-model="form.name">
@@ -21,6 +21,12 @@
                       <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                         placeholder="Enter Email Address" v-model="form.email">
                          <small class="text-danger" v-if="errors.email">{{errors.email[0]}}</small>
+                    </div>
+                     <div class="form-group">
+                      <label>IC Number</label>
+                      <input type="text" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
+                        placeholder="IC No" v-model="form.icno">
+                         <small class="text-danger" v-if="errors.icno">{{errors.icno[0]}}</small>
                     </div>
                     <div class="form-group">
                       <label>Password</label>
@@ -34,15 +40,11 @@
                          <small class="text-danger" v-if="errors.password_confirmation">{{errors.password_confirmation[0]}}</small>
                     </div>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary btn-block">Register</button>
+                      <button type="submit" class="btn btn-primary btn-block">Daftar</button>
                     </div>
                     <hr>
                  
-                  </form>
-            
-                  <div class="text-center">
-                    <router-link to="/" class="font-weight-bold small" >Already have an account?</router-link>
-                  </div>
+                  </form>            
                   <div class="text-center">
                   </div>
                 </div>
@@ -58,7 +60,7 @@
 <script type="text/javascript">
 export default{
   created(){
-    if(User.loggedIn()){
+    if(!User.loggedIn()){
       this.$router.push({name:'home'})
     }
   },
@@ -68,6 +70,7 @@ data(){
         form:{
           name: null,
           email: null,
+          icno: null,
           password: null,
           confirm_password: null
         },
@@ -78,12 +81,11 @@ data(){
         register(){
           axios.post('/api/auth/register', this.form)
           .then(res=> {
-            User.responseAfterLogin(res)
             Toast.fire({
               icon: 'success',
-              title: 'Signed in successfully'
+              title: 'Successfully'
 })
-            this.$router.push({name:'home'})            
+            this.$router.push({name:'senarai'})            
         
             })
           .catch(error=> this.errors = error.response.data.errors)

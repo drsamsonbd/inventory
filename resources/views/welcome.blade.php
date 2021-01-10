@@ -13,13 +13,15 @@
   <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/css/ruang-admin.min.css')}}" rel="stylesheet">
+  
 </head>
+
 
 <body id="page-top">
  <div id="app">
   <div id="wrapper">
     <!-- Sidebar -->
-    <nav id="sidebar" v-show="$route.path === '/' || $route.path === '/register' ||  $route.path === '/forget' ? false : true " style="display :none;">
+    <nav id="sidebar" v-show="$route.path === '/' || $route.path === '/forget' ? false : true " style="display :none;">
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
@@ -46,8 +48,23 @@
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
            
-            <router-link  class="collapse-item" to="/add-user">Tambah</router-link>
+            <router-link  class="collapse-item" to="/register">Tambah</router-link>
             <router-link class="collapse-item" to="/index">Senarai</router-link>
+        
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap2"
+          aria-expanded="true" aria-controls="collapseBootstrap2">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Kategori</span>
+        </a>
+        <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+           
+            <router-link  class="collapse-item" to="/store-category">Tambah Kategori</router-link>
+            <router-link class="collapse-item" to="/category">Senarai Kategori</router-link>
         
           </div>
         </div>
@@ -114,7 +131,7 @@
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
         <!-- TopBar -->
-        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top" id="topbar" v-show="$route.path === '/' || $route.path === '/register' ||  $route.path === '/forget' ? false : true " style="display :none;">
+        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top" id="topbar" v-show="$route.path === '/' ||  $route.path === '/forget' ? false : true " style="display :none;">
           <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>

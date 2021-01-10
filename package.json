@@ -22,6 +22,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@popperjs/core": "^2.6.0",
         "noty": "^3.2.0-beta",
         "sweetalert2": "^10.13.0",
         "vue": "^2.6.12",

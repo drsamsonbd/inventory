@@ -78,16 +78,18 @@ class AuthController extends Controller
             $validateDate = $request->validate([
                 'email'=>'required|unique:users|max:255',
                 'name'=>'required',
+                'icno'=>'required|unique:users|max:16',
                 'password'=>'required|min:6|confirmed'
 
             ]);
             $data = array();
             $data['name'] = $request->name;
             $data['email'] = $request->email;
+            $data['icno'] = $request->icno;
             $data['password'] = Hash::make($request->password);
             DB::table('users')->insert($data);
 
-            return $this->login($request);
+           
     }
 
     /**
@@ -106,6 +108,7 @@ class AuthController extends Controller
             'name' => auth()->user()->name,
             'email' => auth()->user()->email,
             'user_id' => auth()->user()->id,
+            'icno' => auth()->user()->icno,
         ]);
     }
 }
