@@ -4,7 +4,7 @@ class Notification{
         new Noty({
             type : 'success',
             layout: 'topRight',
-            text: 'Operation Successful',
+            text: 'Berjaya!',
             timeout: 1000,
         }).show();
 

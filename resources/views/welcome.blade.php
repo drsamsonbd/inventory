@@ -13,6 +13,7 @@
   <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/css/ruang-admin.min.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" />
   
 </head>
 
@@ -69,6 +70,41 @@
           </div>
         </div>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
+          aria-expanded="true" aria-controls="collapseBootstrap3">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Items</span>
+        </a>
+        <div id="collapseBootstrap3" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+           
+            <router-link  class="collapse-item" to="/store-product">Tambah Item</router-link>
+            <router-link class="collapse-item" to="/product">Senarai Item</router-link>
+        
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap4"
+          aria-expanded="true" aria-controls="collapseBootstrap4">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Pembekal</span>
+        </a>
+        <div id="collapseBootstrap4" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+           
+            <router-link  class="collapse-item" to="/store-supplier">Tambah Pembekal</router-link>
+            <router-link class="collapse-item" to="/supplier">Senarai Pembekal</router-link>
+        
+          </div>
+        </div>
+      </li>
+
+
+
       <li class="nav-item">
         <a class="nav-link" href="forms.html">
           <i class="fab fa-fw fa-wpforms"></i>
@@ -344,7 +380,8 @@
   <script src="{{asset('backend/js/ruang-admin.min.js')}}"></script>
   <script src="{{asset('backend/vendor/chart.js/Chart.min.js')}}"></script>
   <script src="{{asset('backend/js/demo/chart-area-demo.js')}}"></script>  
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js.map"></script>
   <script type="text/javascript">
     let token = localStorage.getItem('token');
     if(token){
