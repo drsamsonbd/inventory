@@ -19,7 +19,7 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Add Supplier</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Tambah Pembekal</h1>
                   </div>
 
       <form class="user" @submit.prevent="supplierInsert" enctype="multipart/form-data">
@@ -28,13 +28,13 @@
 
           <div class="form-row">
             <div class="col-md-6">
-         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Full Name" v-model="form.name">
+         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Nama PIC" v-model="form.name">
        <small class="text-danger" v-if="errors.name"> {{ errors.name[0] }} </small>
             </div>
 
 
      <div class="col-md-6">
-         <input type="email" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Email" v-model="form.email">
+         <input type="email" class="form-control" id="exampleInputFirstName" placeholder="E-mail" v-model="form.email">
          <small class="text-danger" v-if="errors.email"> {{ errors.email[0] }} </small>
             </div>     
             
@@ -46,13 +46,13 @@
 
           <div class="form-row">
             <div class="col-md-6">
-         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Address" v-model="form.address">
+         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Alamat" v-model="form.address">
          <small class="text-danger" v-if="errors.address"> {{ errors.address[0] }} </small>
             </div>
 
 
      <div class="col-md-6">
-         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your Shop Name" v-model="form.shopname">
+         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Nama Syarikat" v-model="form.shopname">
          <small class="text-danger" v-if="errors.shopname"> {{ errors.shopname[0] }} </small>
             </div>     
             
@@ -67,7 +67,7 @@
 
           <div class="form-row">
             <div class="col-md-6">
-         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Your phone Number" v-model="form.phone">
+         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Nombor telefon" v-model="form.phone">
          <small class="text-danger" v-if="errors.phone"> {{ errors.phone[0] }} </small>
             </div>
 

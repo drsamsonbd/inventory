@@ -31750,7 +31750,7 @@ var render = function() {
                               attrs: {
                                 type: "text",
                                 id: "exampleInputFirstName",
-                                placeholder: "Enter Your Full Name"
+                                placeholder: "Nama PIC"
                               },
                               domProps: { value: _vm.form.name },
                               on: {
@@ -31788,7 +31788,7 @@ var render = function() {
                               attrs: {
                                 type: "email",
                                 id: "exampleInputFirstName",
-                                placeholder: "Enter Your Email"
+                                placeholder: "E-mail"
                               },
                               domProps: { value: _vm.form.email },
                               on: {
@@ -31832,7 +31832,7 @@ var render = function() {
                               attrs: {
                                 type: "text",
                                 id: "exampleInputFirstName",
-                                placeholder: "Enter Your Address"
+                                placeholder: "Alamat"
                               },
                               domProps: { value: _vm.form.address },
                               on: {
@@ -31872,7 +31872,7 @@ var render = function() {
                               attrs: {
                                 type: "text",
                                 id: "exampleInputFirstName",
-                                placeholder: "Enter Your Shop Name"
+                                placeholder: "Nama Syarikat"
                               },
                               domProps: { value: _vm.form.shopname },
                               on: {
@@ -31916,7 +31916,7 @@ var render = function() {
                               attrs: {
                                 type: "text",
                                 id: "exampleInputFirstName",
-                                placeholder: "Enter Your phone Number"
+                                placeholder: "Nombor telefon"
                               },
                               domProps: { value: _vm.form.phone },
                               on: {
@@ -32007,7 +32007,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center" }, [
       _c("h1", { staticClass: "h4 text-gray-900 mb-4" }, [
-        _vm._v("Add Supplier")
+        _vm._v("Tambah Pembekal")
       ])
     ])
   },
