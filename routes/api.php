@@ -15,3 +15,4 @@ Route::post('me', 'AuthController@me');
 });
 
 Route::apiResource('/category', 'Api\CategoryController');
+Route::apiResource('/user', 'AuthController');

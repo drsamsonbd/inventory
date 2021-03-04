@@ -50,7 +50,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
            
             <router-link  class="collapse-item" to="/register">Tambah</router-link>
-            <router-link class="collapse-item" to="/index">Senarai</router-link>
+            <router-link class="collapse-item" to="/senarai">Senarai</router-link>
         
           </div>
         </div>

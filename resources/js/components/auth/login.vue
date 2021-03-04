@@ -12,9 +12,9 @@
                   </div>
                   <form class="user" @submit.prevent="login">
                     <div class="form-group">
-                      <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                        placeholder="Enter Email Address" v-model="form.email">
-                        <small class="text-danger" v-if="errors.email">{{errors.email[0]}}</small>
+                      <input type="text" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
+                        placeholder="Enter IC Number"  v-model="form.icno">
+                        <small class="text-danger" v-if="errors.icno">{{errors.icno[0]}}</small>
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password"  v-model="form.password">
@@ -62,7 +62,7 @@ export default{
 data(){
   return{
         form:{
-          email: null,
+          icno: null,
           password: null
         },
         errors:{}
