@@ -5,7 +5,7 @@
   <div>
 
  <div class="row">
-  <router-link to="/register" class="btn btn-primary">Tambah Pengguna </router-link>
+  <router-link to="/add-department" class="btn btn-primary">Tambah Jabatan</router-link>
    
  </div>
 <br>
@@ -19,28 +19,28 @@
               <!-- Simple Tables -->
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Senarai Pengguna</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Senarai Jabatan</h6>
                 </div>
                 <div class="table-responsive">
                   <table class="table align-items-center table-flush">
                     <thead class="thead-light">
                       <tr>
-                        <th>Nama</th>
-                          <th>ID</th>
-                          <th>email</th>
+                        <th>Nama Jabatan</th>
+                          <th>Ketua Unit</th>
+                          <th>No. KP </th>
                             <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="user in filtersearch" :key="user.id">
-                        <td> {{ user.name }} </td>
-                        <td> {{ user.icno }} </td>
-                        <td> {{ user.email }} </td>
+                      <tr v-for="department in filtersearch" :key="department.id">
+                        <td> {{ department.name_department }} </td>
+                        <td> {{ department.name_hod }} </td>
+                        <td> {{ department.icno_hod }} </td>
                        
             <td>
-   <router-link :to="{name: 'edit-user', params:{id:user.id}}" class="btn btn-sm btn-primary">Edit</router-link>
+   <router-link :to="{name: 'edit-department', params:{id:department.id}}" class="btn btn-sm btn-primary">Edit</router-link>
 
- <a @click="deleteUser(user.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete</font></a>
+ <a @click="deleteDepartment(department.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete</font></a>
             </td>
                       </tr>
                     
@@ -72,25 +72,25 @@
     },
     data(){
       return{
-        users:[],
+        departments:[],
         searchTerm:''
       }
     },
     computed:{
       filtersearch(){
-      return this.users.filter(user => {
-         return user.name.match(this.searchTerm)
+      return this.departments.filter(department => {
+         return department.name_department.match(this.searchTerm)
       }) 
       }
     },
  
   methods:{
-    allUser(){
-      axios.get('/api/user/')
-      .then(({data}) => (this.users = data))
+    allDeparment(){
+      axios.get('/api/department/')
+      .then(({data}) => (this.departments = data))
       .catch()
     },
-  deleteUser(id){
+  deleteDepartment(id){
              Swal.fire({
               title: 'Anda pasti?',
               text: "Tindakan ini tidak boleh dikembalikan!",
@@ -101,14 +101,14 @@
               confirmButtonText: 'Teruskan'
             }).then((result) => {
               if (result.value) {
-                axios.delete('/api/user/'+id)
+                axios.delete('/api/department/'+id)
                .then(() => {
-                this.users = this.users.filter(user => {
-                  return user.id != id
+                this.users = this.departments.filter(department => {
+                  return department.id != id
                 })
                })
                .catch(() => {
-                this.$router.push({name: 'senarai'})
+                this.$router.push({name: 'department'})
                })
                 Swal.fire(
                   'Deleted!',
@@ -122,7 +122,7 @@
 
   },
   created(){
-    this.allUser();
+    this.allDeparment();
   } 
   
 

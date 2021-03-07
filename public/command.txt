@@ -1,0 +1,15 @@
+create table=> php artisan make:migration create_tablename_table --create=tablename
+edit the created table (find in database->migration)
+    schema -> create table id and field name
+    Schema::create('suppliers', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('name');
+            $table->string('email');
+
+migrate created table=> php artisan migrate
+create Contoller in Api => php artisan make:controller Api/TableNameController --resource
+Edit the Controller
+create model for tablename => php artisan make:model tablename
+
+
+route in api in controller

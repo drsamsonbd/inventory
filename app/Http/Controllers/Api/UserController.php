@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
-class CategoryController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
-        return response()->json($category);
+        $user = User::all();
+        return response()->json($user);
     }
 
     /**
@@ -33,15 +33,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $validateData = $request->validate([
-            'category_name'=>'required|unique:categories|min:3'
-        ]);
-        $category = new Category;
-        $category->category_name = $request->category_name;
-        $category->save();
-    }
+
 
     /**
      * Display the specified resource.
@@ -51,8 +43,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = DB::table('categories')->where('id',$id)->first();
-        return response()->json($category);
+        $user = DB::table('users')->where('id',$id)->first();
+        return response()->json($user);
     }
 
     /**
@@ -61,7 +53,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
- 
+
 
     /**
      * Update the specified resource in storage.
@@ -73,8 +65,8 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $data = array();
-        $data['category_name'] = $request->category_name;
-        DB::table('categories')->where('id',$id)->update($data);
+        $data['name'] = $request->name;
+        DB::table('users')->where('id',$id)->update($data);
     }
 
     /**
@@ -85,6 +77,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('categories')->where('id',$id)->delete();
+        DB::table('users')->where('id',$id)->delete();
     }
 }

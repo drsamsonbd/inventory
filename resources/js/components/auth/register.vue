@@ -83,7 +83,7 @@ data(){
           .then(res=> {
             Toast.fire({
               icon: 'success',
-              title: 'Successfully'
+              title: 'Successfully registered'
 })
             this.$router.push({name:'senarai'})            
         

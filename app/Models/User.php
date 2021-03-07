@@ -7,7 +7,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illumminate\Support\Facades\Hash;
-class User extends Authenticatable implements JWTSubject
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Authenticatable implements JWTSubject 
 {
     use Notifiable;
 
@@ -75,3 +78,5 @@ class User extends Authenticatable implements JWTSubject
     }
    
 }
+
+

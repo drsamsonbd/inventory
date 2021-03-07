@@ -111,4 +111,5 @@ class AuthController extends Controller
             'icno' => auth()->user()->icno,
         ]);
     }
+
 }

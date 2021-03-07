@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use Illuminate\Http\Request;
-use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
-class CategoryController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
-        return response()->json($category);
+        $department= Department::all();
+        return response()->json($department);
     }
 
     /**
@@ -36,11 +36,19 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'category_name'=>'required|unique:categories|min:3'
+            'name_department'=>'required|unique:departments',
+            'name_hod'=>'required',
+            'icno_hod'=>'required',
+            'icno_director'=>'required',
+
         ]);
-        $category = new Category;
-        $category->category_name = $request->category_name;
-        $category->save();
+        $department = new Department();
+        $department->name_department = $request->name_department;
+        $department->name_hod = $request->name_hod;
+        $department->icno_hod = $request->icno_hod;
+        $department->icno_director = $request->icno_director;
+
+        $department->save();
     }
 
     /**
@@ -51,8 +59,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = DB::table('categories')->where('id',$id)->first();
-        return response()->json($category);
+        $department = DB::table('departments')->where('id',$id)->first();
+        return response()->json($department);
     }
 
     /**
@@ -73,8 +81,8 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $data = array();
-        $data['category_name'] = $request->category_name;
-        DB::table('categories')->where('id',$id)->update($data);
+        $data['name_department'] = $request->name_department;
+        DB::table('departments')->where('id',$id)->update($data);
     }
 
     /**
@@ -85,6 +93,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('categories')->where('id',$id)->delete();
+        DB::table('departments')->where('id',$id)->delete();
     }
 }

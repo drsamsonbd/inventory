@@ -102,7 +102,21 @@
           </div>
         </div>
       </li>
-
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap5"
+          aria-expanded="true" aria-controls="collapseBootstrap5">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Jabatan</span>
+        </a>
+        <div id="collapseBootstrap5" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+           
+            <router-link  class="collapse-item" to="/add-department">Tambah Jabatan</router-link>
+            <router-link class="collapse-item" to="/department">Senarai Jabatan</router-link>
+        
+          </div>
+        </div>
+      </li>
 
 
       <li class="nav-item">
@@ -327,7 +341,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile rounded-circle" src="backend/img/boy.png" style="max-width: 60px">
-                <span class="ml-2 d-none d-lg-inline text-white small">Logout</span>
+                <span class="ml-2 d-none d-lg-inline text-white small">{{(Auth::user())}}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -388,7 +402,7 @@
       $("#sidebar").css("display","");
       $("#topbar").css("display","");
     }
-  </script>
+
 </body>
 
 </html>
