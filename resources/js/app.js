@@ -15,6 +15,8 @@ window.User = User
  import Notification from './Helpers/Notification';
  window.Notification = Notification
 
+ // vue pagination
+ Vue.component('pagination', require('laravel-vue-pagination'));
 
 
 // Sweet Alert Start

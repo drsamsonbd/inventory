@@ -36,6 +36,7 @@
                         <td> {{ department.name_department }} </td>
                         <td> {{ department.name_hod }} </td>
                         <td> {{ department.icno_hod }} </td>
+                  
                        
             <td>
    <router-link :to="{name: 'edit-department', params:{id:department.id}}" class="btn btn-sm btn-primary">Edit</router-link>
@@ -43,7 +44,7 @@
  <a @click="deleteDepartment(department.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete</font></a>
             </td>
                       </tr>
-                    
+                    <Page :total="25"/>
                     </tbody>
                   </table>
                 </div>
