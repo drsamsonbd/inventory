@@ -5,10 +5,11 @@
   <div>
 
  <div class="row">
+    <div class="col-lg-12 mb-4">
   <router-link to="/category" class="btn btn-primary">All Category </router-link>
    
  </div>
-
+ </div>
 
 
     <div class="row justify-content-center">

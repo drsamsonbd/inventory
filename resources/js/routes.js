@@ -7,6 +7,7 @@ let logout = require('./components/auth/logout.vue').default;
 //pengguna
 let adduser= require('./components/pengguna/create.vue').default;
 let senarai= require('./components/pengguna/index.vue').default;
+let edituser= require('./components/pengguna/edit.vue').default;
 
  // Supplier Component 
  let storesupplier = require('./components/supplier/create.vue').default;
@@ -35,8 +36,13 @@ export const routes = [
     { path: '/forget', component: forget, name:'forget' },
     { path: '/logout', component: logout, name:'logout' },
     { path: '/home', component: home, name:'home' },
+
+    // User Routes
     { path: '/add-user', component: adduser, name:'add-user' },
     { path: '/senarai', component: senarai, name:'senarai' },
+    { path: '/edit-user', component: edituser, name:'edit-user' },
+
+    // Category
     { path: '/category', component: category, name:'category' },
     { path: '/store-category', component: storecategory, name:'store-category' },
     { path: '/edit-category/:id', component: editcategory, name:'edit-category' },

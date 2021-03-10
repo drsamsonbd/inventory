@@ -5,10 +5,11 @@
   <div>
 
  <div class="row">
-  <router-link to="/store-category" class="btn btn-primary">Tambah Kategori </router-link>
-   
+      <div class="col-lg-12 mb-4">
+  <router-link to="/store-category" class="btn-sm btn-primary">Tambah Kategori </router-link>
+  </div> 
  </div>
-<br>
+
    <input type="text" v-model="searchTerm" class="form-control" style="width: 300px;" placeholder="Search Here">
 
 
