@@ -33,7 +33,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <text class="font-weight-bold small">Sila hubungi admin untuk bantuan.</text>
+                    <a class="font-weight-bold small">Sila hubungi admin untuk bantuan.</a>
                   </div>                
                 
                   <div class="text-center">
