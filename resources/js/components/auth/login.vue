@@ -33,11 +33,9 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <router-link to="/forget" class="font-weight-bold small">Forget Password</router-link>
+                    <text class="font-weight-bold small">Sila hubungi admin untuk bantuan.</text>
                   </div>                
-                   <div class="text-center">
-                      <router-link to="/register" class="font-weight-bold small">Register</router-link>
-                    </div> 
+                
                   <div class="text-center">
                   </div>
                 </div>

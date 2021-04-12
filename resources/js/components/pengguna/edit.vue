@@ -16,24 +16,25 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Edit User</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Kemaskini</h1>
                   </div>
-                  <form class="user" @submit.prevent="register">
+               <form class="user" @submit="userUpdate">
                     <div class="form-group">
-                      <div class="form-row"> 
-                         <div class="col-md-6">
-                               <label>Full Name</label>
+                      <label>Full Name</label>
                       <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Full Name" v-model="form.name">
-                     <small class="text-danger" v-if="errors.name">{{errors.name[0]}}</small></div> 
-
-                      </div>
-                  
+                     <small class="text-danger" v-if="errors.name">{{errors.name[0]}}</small>
                     </div>            
                     <div class="form-group">
                       <label>Email</label>
                       <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                         placeholder="Enter Email Address" v-model="form.email">
                          <small class="text-danger" v-if="errors.email">{{errors.email[0]}}</small>
+                    </div>
+                     <div class="form-group">
+                      <label>IC Number</label>
+                      <input type="text" class="form-control" id="InputIC" aria-describedby="IClHelp"
+                        placeholder="IC No" v-model="form.icno">
+                         <small class="text-danger" v-if="errors.icno">{{errors.icno[0]}}</small>
                     </div>
                     <div class="form-group">
                       <label>Password</label>
@@ -47,15 +48,11 @@
                          <small class="text-danger" v-if="errors.password_confirmation">{{errors.password_confirmation[0]}}</small>
                     </div>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary btn-block">Register</button>
+                      <button type="submit" class="btn btn-primary btn-block">Kemaskini</button>
                     </div>
                     <hr>
                  
-                  </form>
-            
-                  <div class="text-center">
-                    <router-link to="/" class="font-weight-bold small" >Already have an account?</router-link>
-                  </div>
+                  </form>            
                   <div class="text-center">
                   </div>
                 </div>
@@ -65,7 +62,7 @@
         </div>
       </div>
     </div>
-   </div>
+    </div>
 </template>
 
 
@@ -82,13 +79,33 @@ data(){
         form:{
           name: null,
           email: null,
+          icno: null,
           password: null,
           confirm_password: null
         },
         errors:{}
       }
 } ,
-  
+  created(){
+  	let id = this.$route.params.id
+  	axios.get('/api/user/'+id)
+  	.then(({data}) => (this.form = data))
+  	.catch(console.log('error'))
+  },
+
+  methods:{
+    
+ userUpdate(){
+  	  let id = this.$route.params.id
+       axios.patch('/api/user/'+id,this.form)
+       .then(() => {
+        this.$router.push({ name: 'senarai'})
+        Notification.success()
+       })
+       .catch(error =>this.errors = error.response.data.errors)
+     },
+  } 
+
   }
 
 
