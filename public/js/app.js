@@ -2054,6 +2054,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (User.loggedIn()) {
@@ -30390,7 +30392,37 @@ var render = function() {
                   _vm._v(" "),
                   _c("hr"),
                   _vm._v(" "),
-                  _vm._m(3),
+                  _c(
+                    "div",
+                    { staticClass: "text-center" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "font-weight-bold small",
+                          attrs: { to: "/forget" }
+                        },
+                        [_vm._v("Forget Password")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "text-center" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "font-weight-bold small",
+                          attrs: { to: "/register" }
+                        },
+                        [_vm._v("Register")]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "text-center" })
                 ])
@@ -30450,16 +30482,6 @@ var staticRenderFns = [
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
         [_vm._v("Login")]
       )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center" }, [
-      _c("a", { staticClass: "font-weight-bold small" }, [
-        _vm._v("Sila hubungi admin untuk bantuan.")
-      ])
     ])
   }
 ]
