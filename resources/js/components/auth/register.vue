@@ -40,6 +40,15 @@
                          <small class="text-danger" v-if="errors.password_confirmation">{{errors.password_confirmation[0]}}</small>
                     </div>
                     <div class="form-group">
+                      <label>Select Role</label>
+                      <select v-model="form.role">
+                        <option value="admin">Admin</option>
+                        <option value="finance">Finance</option>
+                        <option value="hod">Head of Department</option>
+                        <option value="user">User</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">Daftar</button>
                     </div>
                     <hr>

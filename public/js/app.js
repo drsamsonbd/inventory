@@ -2195,6 +2195,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     if (!User.loggedIn()) {
@@ -3311,7 +3320,8 @@ __webpack_require__.r(__webpack_exports__);
         name: null,
         email: null,
         password: null,
-        confirm_password: null
+        confirm_password: null,
+        role: null
       },
       errors: {}
     };
@@ -30705,6 +30715,60 @@ var render = function() {
                             _vm._v(_vm._s(_vm.errors.password_confirmation[0]))
                           ])
                         : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Select Role")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.role,
+                              expression: "form.role"
+                            }
+                          ],
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form,
+                                "role",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "admin" } }, [
+                            _vm._v("Admin")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "finance" } }, [
+                            _vm._v("Finance")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "hod" } }, [
+                            _vm._v("Head of Department")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "user" } }, [
+                            _vm._v("User")
+                          ])
+                        ]
+                      )
                     ]),
                     _vm._v(" "),
                     _vm._m(1),
