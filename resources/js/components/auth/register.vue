@@ -41,11 +41,11 @@
                     </div>
                     <div class="form-group">
                       <label>Select Role</label>
-                      <select v-model="form.role">
-                        <option value="admin">Admin</option>
-                        <option value="finance">Finance</option>
-                        <option value="hod">Head of Department</option>
-                        <option value="user">User</option>
+                      <select v-model="form.role_id">
+                        <option value="1">Admin</option>
+                        <option value="2">Finance</option>
+                        <option value="3">Head of Department</option>
+                        <option value="4">User</option>
                       </select>
                     </div>
                     <div class="form-group">
@@ -81,7 +81,8 @@ data(){
           email: null,
           icno: null,
           password: null,
-          confirm_password: null
+          confirm_password: null,
+      
         },
         errors:{}
       }

@@ -80,7 +80,7 @@ class AuthController extends Controller
                 'name'=>'required',
                 'icno'=>'required|unique:users|max:16',
                 'password'=>'required|min:6|confirmed',
-                'role'=>'required',
+                'role_id'=>'required',
 
             ]);
             $data = array();
@@ -88,7 +88,7 @@ class AuthController extends Controller
             $data['email'] = $request->email;
             $data['icno'] = $request->icno;
             $data['password'] = Hash::make($request->password);
-            $data['role'] = $request->role;
+            $data['role_id'] = $request->role_id;
             DB::table('users')->insert($data);
 
            
@@ -111,7 +111,8 @@ class AuthController extends Controller
             'email' => auth()->user()->email,
             'user_id' => auth()->user()->id,
             'icno' => auth()->user()->icno,
-            'role' => auth()->user()->role,
+            'role_id' => auth()->user()->role_id,
+            
         ]);
     }
 

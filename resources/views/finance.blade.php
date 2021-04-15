@@ -28,7 +28,7 @@
         <div class="sidebar-brand-icon">
           <img src="backend/img/logo/hblnlogov2.png">
         </div>
-        <div class="sidebar-brand-text mx-3">Inventory Management</div>
+        <div class="sidebar-brand-text mx-3">Inventory Management || Kewangan</div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
@@ -40,7 +40,7 @@
       <div class="sidebar-heading">
         Features
       </div>
-      <li class="nav-item" v-role_id="['1']">
+      <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-user"></i>

@@ -2089,7 +2089,7 @@ __webpack_require__.r(__webpack_exports__);
         return _this.errors = error.response.data.errors;
       })["catch"](Toast.fire({
         icon: 'warning',
-        title: 'Invalid email or password!'
+        title: 'Invalid login credential!'
       }));
     }
   }
@@ -30727,8 +30727,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.role,
-                              expression: "form.role"
+                              value: _vm.form.role_id,
+                              expression: "form.role_id"
                             }
                           ],
                           on: {
@@ -30743,7 +30743,7 @@ var render = function() {
                                 })
                               _vm.$set(
                                 _vm.form,
-                                "role",
+                                "role_id",
                                 $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
@@ -30752,19 +30752,19 @@ var render = function() {
                           }
                         },
                         [
-                          _c("option", { attrs: { value: "admin" } }, [
+                          _c("option", { attrs: { value: "1" } }, [
                             _vm._v("Admin")
                           ]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "finance" } }, [
+                          _c("option", { attrs: { value: "2" } }, [
                             _vm._v("Finance")
                           ]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "hod" } }, [
+                          _c("option", { attrs: { value: "3" } }, [
                             _vm._v("Head of Department")
                           ]),
                           _vm._v(" "),
-                          _c("option", { attrs: { value: "user" } }, [
+                          _c("option", { attrs: { value: "4" } }, [
                             _vm._v("User")
                           ])
                         ]
