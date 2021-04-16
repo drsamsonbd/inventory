@@ -20,4 +20,5 @@ class JWT
         JWTAuth::parseToken()->authenticate();
         return $next($request);
     }
+   
 }

@@ -36,7 +36,7 @@ class AuthController extends Controller
         $credentials = request(['icno', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Invalid email or password!'], 401);
+            return response()->json(['error' => 'Invalid credential!'], 401);
         }
 
         return $this->respondWithToken($token);
@@ -112,8 +112,9 @@ class AuthController extends Controller
             'user_id' => auth()->user()->id,
             'icno' => auth()->user()->icno,
             'role_id' => auth()->user()->role_id,
-            
+
         ]);
     }
+    
 
 }
