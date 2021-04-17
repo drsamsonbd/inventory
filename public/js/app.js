@@ -2089,7 +2089,7 @@ __webpack_require__.r(__webpack_exports__);
         return _this.errors = error.response.data.errors;
       })["catch"](Toast.fire({
         icon: 'warning',
-        title: 'Invalid login credential!'
+        title: 'Invalid email or password!'
       }));
     }
   }

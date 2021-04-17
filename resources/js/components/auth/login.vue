@@ -82,7 +82,7 @@ data(){
           .catch(
             Toast.fire({
               icon: 'warning',
-              title: 'Invalid login credential!'
+              title: 'Invalid email or password!'
             })
           )
         }
