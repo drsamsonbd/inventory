@@ -40,7 +40,7 @@
                          <small class="text-danger" v-if="errors.password_confirmation">{{errors.password_confirmation[0]}}</small>
                     </div>
                     <div class="form-group">
-                      <label>Select Role</label>
+                      <label>Select Role:</label>
                       <select v-model="form.role_id">
                         <option value="1">Admin</option>
                         <option value="2">Finance</option>
