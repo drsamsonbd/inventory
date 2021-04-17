@@ -40,6 +40,15 @@
                          <small class="text-danger" v-if="errors.password_confirmation">{{errors.password_confirmation[0]}}</small>
                     </div>
                     <div class="form-group">
+                      <label>Select Role:</label>
+                      <select v-model="form.role_id">
+                        <option value="1">Admin</option>
+                        <option value="2">Finance</option>
+                        <option value="3">Head of Department</option>
+                        <option value="4">User</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">Daftar</button>
                     </div>
                     <hr>
@@ -72,7 +81,8 @@ data(){
           email: null,
           icno: null,
           password: null,
-          confirm_password: null
+          confirm_password: null,
+      
         },
         errors:{}
       }

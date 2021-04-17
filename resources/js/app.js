@@ -25,7 +25,7 @@ import Swal from 'sweetalert2'
 window.Swal = Swal;
 const Toast = Swal.mixin({
   toast: true,
-  position: 'top-end',
+  position: 'bottom-end',
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
@@ -45,3 +45,4 @@ const router = new VueRouter({
   const app = new Vue({
     router
   }).$mount('#app')
+

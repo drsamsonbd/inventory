@@ -36,7 +36,7 @@ class AuthController extends Controller
         $credentials = request(['icno', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Invalid email or password!'], 401);
+            return response()->json(['error' => 'Invalid credential!'], 401);
         }
 
         return $this->respondWithToken($token);
@@ -79,7 +79,8 @@ class AuthController extends Controller
                 'email'=>'required|unique:users|max:255',
                 'name'=>'required',
                 'icno'=>'required|unique:users|max:16',
-                'password'=>'required|min:6|confirmed'
+                'password'=>'required|min:6|confirmed',
+                'role_id'=>'required',
 
             ]);
             $data = array();
@@ -87,6 +88,7 @@ class AuthController extends Controller
             $data['email'] = $request->email;
             $data['icno'] = $request->icno;
             $data['password'] = Hash::make($request->password);
+            $data['role_id'] = $request->role_id;
             DB::table('users')->insert($data);
 
            
@@ -109,7 +111,10 @@ class AuthController extends Controller
             'email' => auth()->user()->email,
             'user_id' => auth()->user()->id,
             'icno' => auth()->user()->icno,
+            'role_id' => auth()->user()->role_id,
+
         ]);
     }
+    
 
 }

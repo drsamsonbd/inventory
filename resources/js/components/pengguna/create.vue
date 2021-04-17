@@ -74,7 +74,8 @@ data(){
           name: null,
           email: null,
           password: null,
-          confirm_password: null
+          confirm_password: null,
+          role: null,
         },
         errors:{}
       }
