@@ -36,18 +36,23 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
+        'admins' => [
+            'driver' => 'jwt',
+            'provider' => 'admins',
         ],
-
-        'api' => [
+        'user_finance' => [
+            'driver' => 'jwt',
+            'provider' => 'user_finance',
+        ],
+        'user_hod' => [
+            'driver' => 'jwt',
+            'provider' => 'user_hod',
+        ],
+        'users' => [
             'driver' => 'jwt',
             'provider' => 'users',
-            'hash' => false,
         ],
-    ],
-
+ ],
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -66,6 +71,18 @@ return [
     */
 
     'providers' => [
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Admin::class,
+        ],
+        'user_finance' => [
+            'driver' => 'eloquent',
+            'model' => App\UserFinance::class,
+        ],
+        'user_hod' => [
+            'driver' => 'eloquent',
+            'model' => App\UserHod::class,
+        ],
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,

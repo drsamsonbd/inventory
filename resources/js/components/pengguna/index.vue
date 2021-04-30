@@ -29,7 +29,8 @@
                       <tr>
                         <th>Nama</th>
                           <th>ID</th>
-                          <th>email</th>
+                          <th>Email</th>
+                          <th>Role</th>
                             <th>Action</th>
                       </tr>
                     </thead>
@@ -38,6 +39,7 @@
                         <td> {{ user.name }} </td>
                         <td> {{ user.icno }} </td>
                         <td> {{ user.email }} </td>
+                        <td> {{ user.role_id }} </td>
                        
             <td>
    <router-link :to="{name: 'edit-user', params:{id:user.id}}" class="btn btn-sm btn-primary">Edit</router-link>
