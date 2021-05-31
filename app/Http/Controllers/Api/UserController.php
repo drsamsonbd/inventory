@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -17,6 +18,10 @@ class UserController extends Controller
     public function index()
     {
         $user = User::all();
+        
+        $user = DB::table('users')
+        ->orderBy('name','asc')
+        ->get();
         return response()->json($user);
     }
 
@@ -66,6 +71,10 @@ class UserController extends Controller
     {
         $data = array();
         $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['icno'] = $request->icno;
+        $data['roles'] = $request->roles;
+        $data['password'] = Hash::make($request->password);
         DB::table('users')->where('id',$id)->update($data);
     }
 

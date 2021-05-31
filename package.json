@@ -14,21 +14,28 @@
         "alpinejs": "^2.7.3",
         "axios": "^0.21.1",
         "cross-env": "^7.0",
-        "laravel-mix": "^5.0.1",
+        "laravel-mix": "^6.0.19",
         "lodash": "^4.17.19",
-        "postcss-import": "^12.0.1",
-        "resolve-url-loader": "^3.1.0",
-        "tailwindcss": "^1.8.0",
+        "node-sass": "^6.0.0",
+        "postcss-import": "^14.0.2",
+        "resolve-url-loader": "^2.3.2",
+        "sass-loader": "^11.1.1",
+        "tailwindcss": "^2.1.2",
+        "vue-loader": "^15.9.5",
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
         "@casl/ability": "^5.2.2",
         "@casl/vue": "^2.0.2",
         "@popperjs/core": "^2.6.0",
+        "bootstrap": "^5.0.1",
+        "bootstrap-vue": "^2.21.2",
+        "jquery": "^3.6.0",
         "laravel-vue-pagination": "^2.3.1",
         "noty": "^3.2.0-beta",
         "sweetalert2": "^10.13.0",
         "vue": "^2.6.12",
+        "vue-pagination-2": "^3.0.9",
         "vue-router": "^3.4.9"
     }
 }

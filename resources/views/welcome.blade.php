@@ -6,13 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
-  <meta name="author" content=""> 
+  <meta name="author" content="">
   <link href="{{asset('backend/img/logo/hblnlogov2.png')}}" rel="icon">
-  <title>Inventory Management | Dashboard</title>
+  <title>Inventory Management | Hospital Beluran</title>
   <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('backend/css/ruang-admin.min.css')}}" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" />
   
 </head>
@@ -24,7 +26,7 @@
     <!-- Sidebar -->
     <nav id="sidebar" v-show="$route.path === '/' || $route.path === '/forget' ? false : true " style="display :none;">
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/#/home">
         <div class="sidebar-brand-icon">
           <img src="backend/img/logo/hblnlogov2.png">
         </div>
@@ -40,28 +42,46 @@
       <div class="sidebar-heading">
         Features
       </div>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
-          aria-expanded="true" aria-controls="collapseBootstrap">
-          <i class="far fa-fw fa-user"></i>
-          <span>Pengguna</span>
+      <!--Admin Function-->
+      
+      <li id="admin" class="nav-item" style="display:none">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAdmin"
+          aria-expanded="true" aria-controls="collapseBootstrap2">
+          <i class="fas fa-user-cog"></i>
+          <span>Pentadbir</span>
         </a>
-        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="collapseAdmin" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
            
-            <router-link  class="collapse-item" to="/register">Tambah</router-link>
-            <router-link class="collapse-item" to="/senarai">Senarai</router-link>
-        
+            <router-link  class="collapse-item" to="/user">Pengguna</router-link>
+            <router-link class="collapse-item" to="/department">Jabatan</router-link>
           </div>
         </div>
       </li>
-      <li class="nav-item">
+      <!--Finance Management-->
+      <li id="finance" class="nav-item" style="display:none">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap2"
           aria-expanded="true" aria-controls="collapseBootstrap2">
+          <i class="fas fa-money-bill"></i>
+          <span>Kewangan</span>
+        </a>
+        <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+           
+            <router-link  class="collapse-item" to="/store-category">Tambah Kategori</router-link>
+            <router-link class="collapse-item" to="/allocation">Peruntukan</router-link>
+            <router-link class="collapse-item" to="/code">Kod Peruntukan</router-link>
+          </div>
+        </div>
+      </li>
+
+      <li id="category" class="nav-item" style="display:none">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrapCategory"
+          aria-expanded="true" aria-controls="collapseBootstrapCategory">
           <i class="far fa-fw fa-window-maximize"></i>
           <span>Kategori</span>
         </a>
-        <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="collapseBootstrapCategory" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
            
             <router-link  class="collapse-item" to="/store-category">Tambah Kategori</router-link>
@@ -71,17 +91,17 @@
         </div>
       </li>
 
-      <li class="nav-item">
+      <li id="items" class="nav-item" style="display:none">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
           aria-expanded="true" aria-controls="collapseBootstrap3">
-          <i class="far fa-fw fa-window-maximize"></i>
+          <i class="fas fa-dna"></i>
           <span>Items</span>
         </a>
         <div id="collapseBootstrap3" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
            
             <router-link  class="collapse-item" to="/store-product">Tambah Item</router-link>
-            <router-link class="collapse-item" to="/product">Senarai Item</router-link>
+            <router-link class="collapse-item" to="/items">Senarai Item</router-link>
         
           </div>
         </div>
@@ -340,11 +360,11 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <img class="img-profile rounded-circle" src="backend/img/boy.png" style="max-width: 60px">
-                <span class="ml-2 d-none d-lg-inline text-white small">Profile</span>
+                <span   class="ml-2 d-none d-lg-inline text-white small"> Logged in: <b><?php echo "<div id='Loggeduser'></div>";?></b> </span>
+                
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="#/profile">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -370,7 +390,7 @@
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
        
-        <router-view></router-view>
+        <router-view ></router-view>
  
             </div>
           </div>
@@ -401,8 +421,44 @@
     if(token){
       $("#sidebar").css("display","");
       $("#topbar").css("display","");
+      
     }
+</script>
+<script type="text/javascript">
+    let roles = localStorage.getItem('roles');
+    if(roles.includes("admin")){
+      $("#admin").css("display","");  
+      $("#category").css("display",""); 
+      $("#items").css("display",""); 
+      $("#finance").css("display",""); 
+    }
+    else if(roles.includes("head")){
+   
+      $("#category").css("display",""); 
+      $("#items").css("display",""); 
+    }  
+    else if(roles.includes("finance")){
+   
+   $("#finance").css("display",""); 
+ 
+ }  
 
+</script>
+
+<script>
+let $Loggeduser = localStorage.getItem('user');
+  
+// Function is called, return 
+// value will end up in x
+var x = myFunction();   
+document.getElementById("Loggeduser").innerHTML = x;
+  
+// Function returns the product of a and b
+function myFunction() {
+    return $Loggeduser;             
+}
+  
+</script>
 </body>
 
 </html>

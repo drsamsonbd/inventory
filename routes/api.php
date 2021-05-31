@@ -1,4 +1,12 @@
 <?php
+
+Route::group(['prefix' => 'admin','middleware' => ['assign.guard:admins','jwt.auth']],function ()
+{
+	Route::post('login', 'AuthController@login');	
+});
+
+
+
 Route::group([
 
 'middleware' => 'api',
@@ -17,4 +25,6 @@ Route::post('me', 'AuthController@me');
 Route::apiResource('/category', 'Api\CategoryController');
 Route::apiResource('/user', 'Api\UserController');
 Route::apiResource('/department', 'Api\DepartmentController');
+Route::apiResource('/finance_category', 'Api\FinanceCategoryController');
+Route::apiResource('/items', 'Api\ItemsController');
 

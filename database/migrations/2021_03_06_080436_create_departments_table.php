@@ -17,9 +17,7 @@ class CreateDepartmentsTable extends Migration
            
                     $table->id('id');
                     $table->string('name_department');
-                    $table->string('name_hod');
                     $table->string('icno_hod');
-                    $table->string('icno_director');
                     $table->timestamps();
               
         });

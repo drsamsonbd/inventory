@@ -8,11 +8,13 @@ export default {
     created(){        
             localStorage.removeItem('token')
             localStorage.removeItem('user')
+            localStorage.removeItem('roles')
               Toast.fire({
               icon: 'warning',
               title: 'You have logged out!'
             })
-               this.$router.push({name:'/'})   
+               this.$router.push({name:'/'})
+               window.location.reload()   
         }
 
     }

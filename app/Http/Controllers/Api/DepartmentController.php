@@ -17,6 +17,12 @@ class DepartmentController extends Controller
     public function index()
     {
         $department= Department::all();
+
+        $department = DB::table('departments')
+        ->join('users','departments.icno_hod','users.icno')
+        ->select('departments.id','name_department','users.name')
+        ->orderBy('departments.name_department','asc')
+        ->get();
         return response()->json($department);
     }
 
@@ -37,17 +43,12 @@ class DepartmentController extends Controller
     {
         $validateData = $request->validate([
             'name_department'=>'required|unique:departments',
-            'name_hod'=>'required',
             'icno_hod'=>'required',
-            'icno_director'=>'required',
 
         ]);
         $department = new Department();
         $department->name_department = $request->name_department;
-        $department->name_hod = $request->name_hod;
         $department->icno_hod = $request->icno_hod;
-        $department->icno_director = $request->icno_director;
-
         $department->save();
     }
 

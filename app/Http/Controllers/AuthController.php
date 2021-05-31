@@ -17,7 +17,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('JWT', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
     /**
@@ -33,7 +33,7 @@ class AuthController extends Controller
          
          ]);
 
-        $credentials = request(['icno', 'password']);
+        $credentials = request(['icno','password']);
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Invalid credential!'], 401);
@@ -75,12 +75,13 @@ class AuthController extends Controller
     }
     
     public function register(Request $request){
-            $validateDate = $request->validate([
+           $request->validate([
                 'email'=>'required|unique:users|max:255',
                 'name'=>'required',
                 'icno'=>'required|unique:users|max:16',
                 'password'=>'required|min:6|confirmed',
-                'role_id'=>'required',
+                'roles'=>'required',
+            
 
             ]);
             $data = array();
@@ -88,7 +89,7 @@ class AuthController extends Controller
             $data['email'] = $request->email;
             $data['icno'] = $request->icno;
             $data['password'] = Hash::make($request->password);
-            $data['role_id'] = $request->role_id;
+            $data['roles'] = $request->roles;
             DB::table('users')->insert($data);
 
            
@@ -111,10 +112,11 @@ class AuthController extends Controller
             'email' => auth()->user()->email,
             'user_id' => auth()->user()->id,
             'icno' => auth()->user()->icno,
-            'role_id' => auth()->user()->role_id,
+            'roles' => auth()->user()->roles,
 
         ]);
     }
     
+   
 
 }

@@ -9,8 +9,6 @@ class Department extends Model
 {
     protected $fillable = [
         'name_department',
-        'name_hod',
         'icno_hod',
-        'icno_director',
     ];
 }

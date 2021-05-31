@@ -37,6 +37,16 @@ class Notification{
         }).show();
 
     }
+    unauthorized(){
+        new Noty({
+            type : 'error',
+            layout: 'topRight',
+            text: 'Unauthorized access!',
+            timeout: 1000,
+        }).show();
+
+    }
+
    }
    
    export default Notification = new Notification()

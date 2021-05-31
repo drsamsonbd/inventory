@@ -7,8 +7,9 @@ class User{
 responseAfterLogin(res){
     const access_token = res.data.access_token
     const username = res.data.name
+    const roles= res.data.roles
     if(Token.isValid(access_token)){
-        AppStorage.store(access_token,username)
+        AppStorage.store(access_token,username,roles)
 
     }
 }
@@ -28,6 +29,11 @@ loggedIn(){
 name(){
     if(this.loggedIn()){
         return localStorage.getItem('user');
+    }
+}
+roles(){
+    if(this.loggedIn()){
+        return localStorage.getItem('roles');
     }
 }
 id(){

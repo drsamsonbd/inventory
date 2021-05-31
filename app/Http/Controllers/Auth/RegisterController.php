@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'icno' => ['required', 'string', 'email', 'max:16', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => ['required'],
+            'roles' => ['required'],
         ]);
     }
 
@@ -64,14 +64,23 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'icno' => $data['icno'],
-            'password' => Hash::make($data['password']),
-            'role'=>$data['role'],
+    public function register(Request $request){
+        $validateDate = $request->validate([
+            'email'=>'required|unique:users|max:255',
+            'name'=>'required',
+            'icno'=>'required|unique:users|max:16',
+            'password'=>'required|min:6|confirmed',
+            'roles'=>'required',
+        
+
         ]);
-    }
+        $data = array();
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['icno'] = $request->icno;
+        $data['password'] = Hash::make($request->password);
+        $data['roles'] = $request->roles;
+        DB::table('users')->insert($data);
+
+        }      
 }

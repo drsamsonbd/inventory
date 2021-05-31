@@ -4,10 +4,10 @@ let forget = require('./components/auth/forget.vue').default;
 let home = require('./components/home.vue').default;
 
 let logout = require('./components/auth/logout.vue').default;
-//pengguna
-let adduser= require('./components/pengguna/create.vue').default;
-let senarai= require('./components/pengguna/index.vue').default;
-let edituser= require('./components/pengguna/edit.vue').default;
+
+//pentadbir
+let user= require('./components/admin/user.vue').default;
+let department= require('./components/admin/department.vue').default;
 
  // Supplier Component 
  let storesupplier = require('./components/supplier/create.vue').default;
@@ -24,10 +24,15 @@ let storeproduct= require('./components/product/create.vue').default;
 let product= require('./components/product/index.vue').default;
 let editproduct= require('./components/product/edit.vue').default;
 
-//product component
-let adddepartment= require('./components/department/create.vue').default;
-let department= require('./components/department/index.vue').default;
-let editdepartment= require('./components/department/edit.vue').default;
+//finance component
+let allocation = require('./components/finance/index.vue').default;
+let code = require('./components/finance/category.vue').default;
+
+//items component
+let items = require('./components/items/index.vue').default;
+
+//profile component
+let profile = require('./components/user/UserAccountDetails.vue').default;
 
 
 export const routes = [
@@ -37,11 +42,9 @@ export const routes = [
     { path: '/logout', component: logout, name:'logout' },
     { path: '/home', component: home, name:'home' },
 
-    // User Routes
-    { path: '/add-user', component: adduser, name:'add-user' },
-    { path: '/senarai', component: senarai, name:'senarai' },
-    { path: '/edit-user', component: edituser, name:'edit-user' },
-
+    // Admin Routes
+    { path: '/user', component: user, name:'user' },
+    { path: '/department', component: department, name:'department' },
     // Category
     { path: '/category', component: category, name:'category' },
     { path: '/store-category', component: storecategory, name:'store-category' },
@@ -57,8 +60,16 @@ export const routes = [
     { path: '/store-product', component: storeproduct, name:'store-product' },
     { path: '/edit-product/:id', component: editproduct, name:'edit-product' },
 
-     //department routes
-     { path: '/department', component: department, name:'department' },
-     { path: '/add-department', component: adddepartment, name:'add-department' },
-     { path: '/edit-department/:id', component: editdepartment, name:'edit-department' },
+
+    //finance routes
+    { path: '/allocation', component: allocation, name:'allocation' },
+    { path: '/code', component: code, name:'code' },
+
+     //item routes
+     { path: '/items', component: items, name:'items' },
+
+
+     //profile routes
+     { path: '/profile', component: profile, name:'profile' },
+
   ]
