@@ -83,6 +83,7 @@ class DepartmentController extends Controller
     {
         $data = array();
         $data['name_department'] = $request->name_department;
+        $data['icno_hod'] = $request->icno_hod;
         DB::table('departments')->where('id',$id)->update($data);
     }
 

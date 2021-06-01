@@ -38,8 +38,8 @@
   </div>
   <!--Update Modal-->
   <div>
-  <b-modal ref="edit-modal" hide-footer title="Kemaskini Pengguna">     
-          <form class="user" @submit.prevent="userUpdate"> 
+  <b-modal ref="edit-modal" hide-footer title="Kemaskini Jabatan">     
+          <form class="user" @submit.prevent="update"> 
                     <div class="form-group" hidden>
                       <label>User ID:</label>
                       <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="forms.id">
@@ -59,7 +59,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary btn-block" @click="update(department.id)">Kemaskini</button>
+                      <button type="submit" class="btn btn-primary btn-block" >Kemaskini</button>
                
                     </div>
                
@@ -150,11 +150,11 @@
       </template>
 
       <template #cell(actions)="row">
-        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
-         Edit
+        <b-button size="sm" id="update-btn"  @click="toggleModal(row.item.id)" class="mr-1">
+         <i class="fas fa-edit"></i>
         </b-button>
         <b-button size="sm" id="delete-btn" class="btn btn-sm btn-danger" @click="deleteDept(row.item.id)">
-         Delete
+         <i class="fas fa-trash-alt"></i>
         </b-button>
       </template>
 
@@ -199,14 +199,6 @@
       if (!User.loggedIn()) {
         this.$router.push({name: '/'})
       }
-    document.getElementById("delete-btn").addEventListener("click", myFunction);
-    function myFunction() {
-    this.deleteDept();
-    };
-    document.getElementById("newDept-btn").addEventListener("click", myFunction2);
-    function myFunction2() {
-    this.registerDept();
-    };
 
     },
     
@@ -305,8 +297,7 @@
         console.log(error);
         self.$router.push({ path: '/login' });
       });
-    }
-    ,
+    },
       deleteDept(id){
                 Swal.fire({
                   title: 'Anda pasti?',
@@ -350,21 +341,22 @@
        toggleModal(id) {
          axios.get('/api/department/'+id)
   	    .then(({data}) => (this.forms = data))
-        this.$refs['edit-modal'].toggle('#toggle-btn')
+        this.$refs['edit-modal'].toggle('#update-btn')
        
       },
    
        registerDept(){
           axios.post('/api/department', this.form)
          .then(() => {    
-         let self = this;
+         let register = this;
         axios.get('/department/')
        .then(function (response) {
-        self.items = response.data;
+        register.items = response.data;
         })
         this.$refs['my-modal'].hide(); 
         Notification.success();
         this.allDept(); 
+   
        })
         .catch(error=> this.errors = error.response.data.errors)
           
@@ -374,15 +366,11 @@
        let id = this.forms.id
        axios.patch('/api/department/'+id, this.forms)
        .then(() => {
-         let self = this;
-         axios.get('/api/deparment/')
-        .then(function (response) {
-          self.items = response.data;
-        })
-      Notification.success();
+      this.$refs['edit-modal'].hide()      
       this.allDept(); 
+      Notification.success();
+      
       })
-       .catch(error =>this.errors = error.response.data.errors)
        
      },
      allUser(){

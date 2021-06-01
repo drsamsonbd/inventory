@@ -102,7 +102,7 @@
   <!--userReset Modal-->
   <div>
   <b-modal ref="reset-modal" hide-footer title="Tetapkan semula kata laluan">     
-          <form class="user" @submit.prevent="userUpdate"> 
+          <form class="user" @submit.prevent="ResetUser"> 
                     <div class="form-group" hidden>
                       <label>User ID:</label>
                       <input type="text" class="form-control" id="exampleInputID" placeholder="ID" v-model="formr.id">
@@ -142,7 +142,7 @@
                      
                     </div>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary btn-block" @click="ResetUser(formr.id)">Tetapkan semula</button>
+                      <button type="submit" class="btn btn-primary btn-block" >Tetapkan semula</button>
                
                     </div>
                
