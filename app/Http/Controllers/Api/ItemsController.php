@@ -18,8 +18,10 @@ class ItemsController extends Controller
     {
         $items = Items::all();
         $items = DB::table('items')
-        ->join('categories','items.category_id','categories.id')
-        ->select('items.*','categories.category_name')
+      //  ->join('categories','items.category_id','categories.id')
+      // ->join('skus','items.category_id','skus.id')
+      // ->join('pkus','items.category_id','pkus.id')
+      // ->select('items.*','categories.category_name','skus.sku','pkus.pku')
         ->orderBy('items.descriptions','asc')
         ->get();
         return response()->json($items);
@@ -109,11 +111,11 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
+     
+       
 
-        $image =  $request->image;
-
-
-                  
+        if ($request->newimage){
+         $image =  $request->newimage;         
         $position = strpos($image, ';');
         $sub = substr($image, 0, $position);
         $ext = explode('/', $sub)[1];
@@ -139,7 +141,20 @@ class ItemsController extends Controller
             $data['image'] = $image_url;
          
             DB::table('items')->where('id',$id)->update($data);
-          
+          }  else {
+            $data = array();
+            $data['item_code'] = $request->item_code;
+            $data['descriptions'] = $request->descriptions;
+            $data['sku'] = $request->sku;
+            $data['pku'] = $request->pku;
+            $data['dku'] = $request->dku;
+            $data['avpu'] = $request->avpu;
+            $data['category_id'] = $request->category_id;
+             
+                DB::table('items')->where('id',$id)->update($data);
+
+          }
+
     }
    
     

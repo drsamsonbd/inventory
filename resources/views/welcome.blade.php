@@ -86,7 +86,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
            
             <router-link class="collapse-item" to="/items">Item</router-link>
-            <router-link class="collapse-item" to="/category">Kategori</router-link>
+      <!--      <router-link class="collapse-item" to="/category">Kategori</router-link>-->
             <router-link class="collapse-item" to="/itemsetting">Tetapan</router-link>
           </div>
         </div>
@@ -387,7 +387,9 @@
   <script src="{{asset('asset/js/demo/chart-area-demo.js')}}"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js.map"></script>
+  
   <script type="text/javascript">
+
     let token = localStorage.getItem('token');
     if(token){
       $("#sidebar").css("display","");

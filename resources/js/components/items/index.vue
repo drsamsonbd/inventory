@@ -8,7 +8,7 @@
  <div class="row">
    <div class="col-lg-12 mb-4">
    <div>
-    <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Item Baru</b-button>
+   
   <!--Insert Modal-->
     <b-modal ref="insert-modal" size="lg" hide-footer title="Daftar Item Baru">
     
@@ -38,22 +38,28 @@
                      <div class="form-row">
                      <div class="form-group col-md-2" >
                       <label>SKU</label>
-                      <input type="text" class="form-control" id="SKU" placeholder="Size per unit" v-model="form.sku">
+                      <select class="form-control" id="skuID" v-model="form.sku">
+                        <option v-for="sku in skus "   v-bind:key="sku.id" :value="sku.id"> {{sku.sku}}</option>
+                        
+                        </select>
                          <small class="text-danger" v-if="errors.sku">{{errors.sku[0]}}</small>
                     </div>
                     <div class="form-group col-md-3">
                       <label>PKU</label>
-                      <input type="text" class="form-control" id="PKU" placeholder="Packaging" v-model="form.pku">
-                   <small class="text-danger" v-if="errors.pku">{{errors.pku[0]}}</small>
+                      <select class="form-control" id="pkuID" v-model="form.pku">
+                        <option v-for="pku in pkus "   v-bind:key="pku.id" :value="pku.id"> {{pku.pku}}</option>
+                        
+                        </select>
+                         <small class="text-danger" v-if="errors.pku">{{errors.pku[0]}}</small>
                     </div>
                  <div class="form-group col-md-4">
                       <label>Kuantiti Minimum</label>
-                      <input type="number" step="1" class="form-control" id="minimumOrder" placeholder="Kuantiti Minimum Pembelian" v-model="form.dku">
+                      <input type="number" step="1" min="1" class="form-control" id="minimumOrder" placeholder="Kuantiti Minimum Pembelian" v-model="form.dku">
                          <small class="text-danger" v-if="errors.dku">{{errors.dku[0]}}</small>
                     </div>
                      <div class="form-group col-md-3">
                       <label>Purata Harga/PKU</label>
-                      <input type="number" step=".0001" class="form-control" id="avpu" placeholder="RM" v-model="form.avpu">
+                      <input type="number" step=".0001" min=".0001" class="form-control" id="avpu" placeholder="RM" v-model="form.avpu">
                          <small class="text-danger" v-if="errors.avpu">{{errors.avpu[0]}}</small>
                     </div>
                   </div>
@@ -117,22 +123,28 @@
                      <div class="form-row">
                      <div class="form-group col-md-2" >
                       <label>SKU</label>
-                      <input type="text" class="form-control" id="SKU" placeholder="Size per unit" v-model="forms.sku">
+                      <select class="form-control" id="skuID" v-model="forms.sku">
+                        <option v-for="sku in skus "   v-bind:key="sku.id" :value="sku.id"> {{sku.sku}}</option>
+                        
+                        </select>
                          <small class="text-danger" v-if="errors.sku">{{errors.sku[0]}}</small>
                     </div>
                     <div class="form-group col-md-3">
                       <label>PKU</label>
-                      <input type="text" class="form-control" id="PKU" placeholder="Packaging" v-model="forms.pku">
-                   <small class="text-danger" v-if="errors.pku">{{errors.pku[0]}}</small>
+                      <select class="form-control" id="pkuID" v-model="forms.pku">
+                        <option v-for="pku in pkus "   v-bind:key="pku.id" :value="pku.id"> {{pku.pku}}</option>
+                        
+                        </select>
+                         <small class="text-danger" v-if="errors.pku">{{errors.pku[0]}}</small>
                     </div>
                  <div class="form-group col-md-4">
                       <label>Kuantiti Minimum</label>
-                      <input type="number" step="1" class="form-control" id="minimumOrder" placeholder="Kuantiti Minimum Pembelian" v-model="forms.dku">
+                      <input type="number" step="1" min="1" class="form-control" id="minimumOrder" placeholder="Kuantiti Minimum Pembelian" v-model="forms.dku">
                          <small class="text-danger" v-if="errors.dku">{{errors.dku[0]}}</small>
                     </div>
                      <div class="form-group col-md-3">
                       <label>Purata Harga/PKU</label>
-                      <input type="number" step=".0001" class="form-control" id="avpu" placeholder="RM" v-model="forms.avpu">
+                      <input type="number" step=".0001" min="0.0001" class="form-control" id="avpu" placeholder="RM" v-model="forms.avpu">
                          <small class="text-danger" v-if="errors.avpu">{{errors.avpu[0]}}</small>
                     </div>
                   </div>
@@ -147,7 +159,7 @@
                         
                     </div>
                      <div class="form-group col-md-3">                     
-                    <img :src="forms.image" alt="" style="height:120px; width:120px;">
+                    <img :src="forms.newimage" alt="" style="height:120px; width:120px;">
                   
                     </div>
                      </div>
@@ -175,8 +187,17 @@
 
 
 
-<b-row>
-        <b-col lg="6" class="my-1">
+      <b-row>
+
+
+
+         
+         </b-row>
+ <b-row>
+    <b-col sm="1" class="my-1" align="right">
+           <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Item Baru</b-button>
+        </b-col>
+        <b-col sm="6" class="my-1">
         <b-form-group
           label="Filter"
           label-for="filter-input"
@@ -200,7 +221,7 @@
         </b-form-group>
       </b-col>
 
-      <b-col sm="5" md="3" class="my-1">
+      <b-col sm="3" md="3" class="my-1">
         <b-form-group
           label="Per page"
           label-for="per-page-select"
@@ -219,7 +240,9 @@
           ></b-form-select>
         </b-form-group>
       </b-col>
-
+        <b-col sm="1" class="my-1" align="right">
+           <b-button size="sm" variant="outline-primary" ><router-link to="/itemsetting"><i class="fas fa-cogs"></i></router-link></b-button>
+        </b-col>
    
     </b-row>
 
@@ -332,7 +355,7 @@
           pku: null,
           dku: null,
           avpu: null,
-          image: null,
+          newimage: null,
           category_id:null,
       
         },
@@ -413,6 +436,28 @@
         self.$router.push({ path: '/login' });
       });
     },
+ allSKU(){
+    let self = this;
+     axios.get('/api/sku/')
+      .then(function (response) {
+        self.skus = response.data;
+      }).catch(function (error) {
+        console.log(error);
+        Notification.wrong();
+      });
+    },
+ allPKU(){
+    let self = this;
+     axios.get('/api/pku/')
+      .then(function (response) {
+        self.pkus = response.data;
+      }).catch(function (error) {
+        console.log(error);
+        Notification.wrong();
+      });
+    },
+
+
 
     onFileSelected(event){
       let file = event.target.files[0];
@@ -509,6 +554,8 @@
   created(){
     this.allItem();
     this.allCategories();
+    this.allSKU();
+    this.allPKU();
   },
   mounted: function(){
     this.allItem();

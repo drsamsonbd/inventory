@@ -55,6 +55,15 @@ class Notification{
         }).show();
 
     }
+    wrong(){
+        new Noty({
+            type : 'error',
+            layout: 'topRight',
+            text: 'Something went wrong!',
+            timeout: 1000,
+        }).show();
+
+    }
    }
    
    export default Notification = new Notification()

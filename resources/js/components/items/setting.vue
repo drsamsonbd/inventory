@@ -22,9 +22,7 @@
             </div> 
             </div>
         </div>
-          <div class="form-group">
-          <button type="submit" id="insert-btn" class="btn btn-primary btn-block">Simpan</button>
-        </div>
+        
         
       </form>      
                
@@ -215,7 +213,7 @@
       :filter="categoryfilter"
       :filter-included-fields="categoryfilterOn"
       :sort-by.sync="categorysortBy"
-      :sort-asc.sync="categorysortAsc"
+      :sort-desc.sync="categorysortDesc"
       :sort-direction="categorysortDirection"
       stacked="md"
       show-empty
@@ -251,12 +249,14 @@
 
                     
                 
-                   <p class="mt-3" style="align:center;">Current Page: {{ categorycurrentPage }} | Total Data: {{ categoryrows }}</p>
+                   <p class="mt-6" align="center" style="font-size:0.8em;">Current Page: {{ categorycurrentPage }} | Total Data: {{ categoryrows }}</p>
                       <b-pagination
                       v-model="categorycurrentPage"
                       :total-rows="categoryrows"
                       :per-page="categoryperPage"
                       aria-controls="category-table"
+                      style="sm"
+                      align="center"
                     ></b-pagination>
 
               </b-col>
@@ -332,7 +332,7 @@
       :filter="pkufilter"
       :filter-included-fields="pkufilterOn"
       :sort-by.sync="pkusortBy"
-      :sort-asc.sync="pkusortAsc"
+      :sort-desc.sync="pkusortDesc"
       :sort-direction="pkusortDirection"
       stacked="md"
       show-empty
@@ -367,12 +367,14 @@
 
      
                 
-                   <p class="mt-3" style="align:center;">Current Page: {{ pkucurrentPage }}</p>
+                   <p class="mt-6" align="center" style="font-size:0.8em;">Current Page: {{ pkucurrentPage }}</p>
                       <b-pagination
                       v-model="pkucurrentPage"
                       :total-rows="pkurows"
                       :per-page="pkuperPage"
                       aria-controls="pku-table"
+                      size="sm"
+                      align="center"
                     ></b-pagination>
 
 
@@ -441,7 +443,7 @@
       :filter="skufilter"
       :filter-included-fields="skufilterOn"
       :sort-by.sync="skusortBy"
-      :sort-asc.sync="skusortAsc"
+      :sort-desc.sync="skusortDesc"
       :sort-direction="skusortDirection"
       stacked="md"
       show-empty
@@ -473,13 +475,14 @@
         </template>
         </b-table>
                
-                   <p class="mt-3" style="align:center; font-size:0.8em;" >Current Page: {{ skucurrentPage }}</p>
+                   <p class="mt-6" align="center" style="font-size:0.8em;">Current Page: {{ skucurrentPage }}</p>
                       <b-pagination
                       v-model="skucurrentPage"
                       :total-rows="skurows"
                       :per-page="skuperPage"
                       aria-controls="sku-table"
                       size="sm"
+                      align="center"
                     ></b-pagination>
  </b-row>
               </b-col>
@@ -547,7 +550,11 @@
             href: '/'
           },
           {
-            text: 'Kategori',
+            text: 'Items',
+            href: '#/items'
+          },
+           {
+            text: 'Tetapan',
             active: true
           },
         ],
@@ -557,7 +564,7 @@
         categorycurrentPage: 1,
         categorypageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
         categorysortBy: 'category_name',
-        categorysortAsc: true,
+        categorysortDesc: false,
         categorysortDirection: 'asc',
         categoryfilter: null,
         categoryfilterOn: [],
@@ -584,7 +591,7 @@
         pkucurrentPage: 1,
         pkupageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
         pkusortBy: 'pku',
-        pkusortAsc: true,
+        pkusortDesc: false,
         pkusortDirection: 'asc',
         pkufilter: null,
         pkufilterOn: [],
@@ -612,7 +619,7 @@
         skucurrentPage: 1,
         skupageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
         skusortBy: 'sku',
-        skusortAsc: true,
+        skusortDesc: false,
         skusortDirection: 'asc',
         skufilter: null,
          skufilterOn: [],
