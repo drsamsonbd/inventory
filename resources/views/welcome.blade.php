@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{asset('asset/img/logo/hblnlogov2.png')}}" rel="icon">
-  <title>Inventory Manaasset| Hospital Beluran</title>
+  <title>Inventory Management System| Hospital Beluran</title>
   <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('asset/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('asset/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
