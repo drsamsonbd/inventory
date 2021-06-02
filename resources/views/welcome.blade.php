@@ -92,7 +92,7 @@
         </div>
       </li>
 
-      <li class="nav-item">
+     <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap4"
           aria-expanded="true" aria-controls="collapseBootstrap4">
           <i class="far fa-fw fa-window-maximize"></i>
@@ -163,7 +163,7 @@
         </a>
       </li>
       <hr class="sidebar-divider">
-      <div class="version" id="version-ruangadmin"></div>
+      <div class="version" id="version-ruangadmin"></div>-->
     </ul>
     </nav>
     <!-- Sidebar -->
