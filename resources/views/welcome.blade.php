@@ -7,12 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="{{asset('backend/img/logo/hblnlogov2.png')}}" rel="icon">
-  <title>Inventory Management | Hospital Beluran</title>
+  <link href="{{asset('asset/img/logo/hblnlogov2.png')}}" rel="icon">
+  <title>Inventory Manaasset| Hospital Beluran</title>
   <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
-  <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
-  <link href="{{asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-  <link href="{{asset('backend/css/ruang-admin.min.css')}}" rel="stylesheet">
+  <link href="{{asset('asset/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{asset('asset/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{asset('asset/css/ruang-admin.min.css')}}" rel="stylesheet">
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" integrity="sha512-NXUhxhkDgZYOMjaIgd89zF2w51Mub53Ru3zCNp5LTlEzMbNNAjTjDbpURYGS5Mop2cU4b7re1nOIucsVlrx9fA==" crossorigin="anonymous" />
@@ -28,7 +28,7 @@
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/#/home">
         <div class="sidebar-brand-icon">
-          <img src="backend/img/logo/hblnlogov2.png">
+          <img src="asset/img/logo/hblnlogov2.png">
         </div>
         <div class="sidebar-brand-text mx-3">Inventory Management</div>
       </a>
@@ -75,34 +75,19 @@
         </div>
       </li>
 
-      <li id="category" class="nav-item" style="display:none">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrapCategory"
-          aria-expanded="true" aria-controls="collapseBootstrapCategory">
-          <i class="far fa-fw fa-window-maximize"></i>
-          <span>Kategori</span>
-        </a>
-        <div id="collapseBootstrapCategory" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-           
-            <router-link  class="collapse-item" to="/store-category">Tambah Kategori</router-link>
-            <router-link class="collapse-item" to="/category">Senarai Kategori</router-link>
-        
-          </div>
-        </div>
-      </li>
-
+  
       <li id="items" class="nav-item" style="display:none">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
           aria-expanded="true" aria-controls="collapseBootstrap3">
           <i class="fas fa-dna"></i>
-          <span>Items</span>
+          <span>Item</span>
         </a>
         <div id="collapseBootstrap3" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
            
-            <router-link  class="collapse-item" to="/store-product">Tambah Item</router-link>
-            <router-link class="collapse-item" to="/items">Senarai Item</router-link>
-        
+            <router-link class="collapse-item" to="/items">Item</router-link>
+            <router-link class="collapse-item" to="/category">Kategori</router-link>
+            <router-link class="collapse-item" to="/itemsetting">Tetapan</router-link>
           </div>
         </div>
       </li>
@@ -122,21 +107,7 @@
           </div>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap5"
-          aria-expanded="true" aria-controls="collapseBootstrap5">
-          <i class="far fa-fw fa-window-maximize"></i>
-          <span>Jabatan</span>
-        </a>
-        <div id="collapseBootstrap5" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-           
-            <router-link  class="collapse-item" to="/add-department">Tambah Jabatan</router-link>
-            <router-link class="collapse-item" to="/department">Senarai Jabatan</router-link>
-        
-          </div>
-        </div>
-      </li>
+   
 
 
       <li class="nav-item">
@@ -286,7 +257,7 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="backend/img/man.png" style="max-width: 60px" alt="">
+                    <img class="rounded-circle" src="asset/img/man.png" style="max-width: 60px" alt="">
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div class="font-weight-bold">
@@ -297,7 +268,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="backend/img/girl.png" style="max-width: 60px" alt="">
+                    <img class="rounded-circle" src="asset/img/girl.png" style="max-width: 60px" alt="">
                     <div class="status-indicator bg-default"></div>
                   </div>
                   <div>
@@ -408,12 +379,12 @@
   </a>
 
   <script src="{{asset('js/app.js')}}"></script>
-  <script src="{{asset('backend/vendor/jquery/jquery.min.js')}}"></script>
-  <script src="{{asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('backend/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-  <script src="{{asset('backend/js/ruang-admin.min.js')}}"></script>
-  <script src="{{asset('backend/vendor/chart.js/Chart.min.js')}}"></script>
-  <script src="{{asset('backend/js/demo/chart-area-demo.js')}}"></script>  
+  <script src="{{asset('asset/vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{asset('asset/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('asset/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+  <script src="{{asset('asset/js/ruang-admin.min.js')}}"></script>
+  <script src="{{asset('asset/vendor/chart.js/Chart.min.js')}}"></script>
+  <script src="{{asset('asset/js/demo/chart-area-demo.js')}}"></script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js.map"></script>
   <script type="text/javascript">
@@ -428,13 +399,11 @@
     let roles = localStorage.getItem('roles');
     if(roles.includes("admin")){
       $("#admin").css("display","");  
-      $("#category").css("display",""); 
       $("#items").css("display",""); 
       $("#finance").css("display",""); 
     }
     else if(roles.includes("head")){
    
-      $("#category").css("display",""); 
       $("#items").css("display",""); 
     }  
     else if(roles.includes("finance")){

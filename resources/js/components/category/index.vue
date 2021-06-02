@@ -10,7 +10,7 @@
    <div>
     <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Kategori Baru</b-button>
 
-    <b-modal ref="my-modal" hide-footer title="Kategori Baru">
+    <b-modal ref="insert-modal" hide-footer title="Kategori Baru">
     
             <form class="user" @submit.prevent="categoryInsert">
 
@@ -23,7 +23,7 @@
             </div>
         </div>
           <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block">Simpan</button>
+          <button type="submit" id="insert-btn" class="btn btn-primary btn-block">Simpan</button>
         </div>
         
       </form>      
@@ -33,7 +33,7 @@
   </div>
   <!--categoryUpdate Modal-->
   <div>
-  <b-modal ref="edit-modal" hide-footer title="Kemaskini Kategory">     
+  <b-modal ref="update-modal" hide-footer title="Kemaskini Kategory">     
            <form class="user" @submit.prevent="categoryUpdate">
          <div class="form-group" hidden>
           <label>Category ID:</label>
@@ -48,7 +48,7 @@
           </div>
         </div> 
         <div class="form-group">
-          <button type="submit" class="btn btn-primary btn-block">Kemaskini</button>
+          <button type="submit" id="update-btn"  class="btn btn-primary btn-block">Kemaskini</button>
         </div>        
       </form>
            
@@ -119,7 +119,7 @@
     </b-row>
 
       <b-table head-variant
-      :items="items"
+      :items="categoryitems"
       :fields="fields"
       :current-page="currentPage"
       :per-page="perPage"
@@ -136,7 +136,7 @@
      <template #cell(index)="data">
         {{ data.index + 1 }}
       </template>
-      <template #cell(item)="row">
+      <template #cell(categoryitems)="row">
         {{ row.value.first }} {{ row.value.last }}
       </template>
 
@@ -250,7 +250,7 @@
         sortDirection: 'asc',
         filter: null,
         filterOn: [],
-        items: [],
+        categoryitems: [],
         fields: [
            { key: 'index', label:'No.'},
           { key: 'category_name', label: 'Kategori', sortable: true, sortDirection: 'asc' },
@@ -271,7 +271,7 @@
       }) 
       },
       rows() {
-        return this.items.length
+        return this.categoryitems.length
       }
     },
  
@@ -280,7 +280,7 @@
     let self = this;
      axios.get('/api/category/')
       .then(function (response) {
-        self.items = response.data;
+        self.categoryitems = response.data;
       }).catch(function (error) {
         console.log(error);
         self.$router.push({ path: '/login' });
@@ -300,7 +300,7 @@
               if (result.value) {
                 axios.delete('/api/category/'+id)
                .then(() => {
-                  window.location.reload()
+                this.allCategory();
                 this.categories = this.categories.filter(category => {
                   return category.id != id
                 })           
@@ -318,22 +318,23 @@
 
       },
       showModal() {
-        this.$refs['my-modal'].show()
+        this.$refs['insert-modal'].show()
       },
        hideModal() {
-        this.$refs['edit-modal'].hide()
+        this.$refs['update-modal'].hide()
       },
        toggleModal(id) {
          axios.get('/api/category/'+id)
   	    .then(({data}) => (this.forms = data))
-        this.$refs['edit-modal'].toggle('#toggle-btn')
+        this.$refs['update-modal'].toggle('#toggle-btn')
        
       },
    
        categoryInsert(){
        axios.post('/api/category',this.form)
-       .then(() => {
-        window.location.reload()
+       .then(() => { 
+       this.$refs['insert-modal'].hide('#insert-btn')  
+         this.allCategory();
         Notification.success()
        })
           .catch(error=> this.errors = error.response.data.errors)
@@ -342,8 +343,9 @@
      categoryUpdate(){
   	  let id = this.forms.id
        axios.patch('/api/category/'+id,this.forms)
-       .then(() => {
-        window.location.reload()
+       .then(() => { 
+         this.$refs['update-modal'].hide('#update-btn')
+         this.allCategory();
         Notification.success()
        })
        .catch(error =>this.errors = error.response.data.errors)

@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Items;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Image;
 
 class ItemsController extends Controller
 {
@@ -16,6 +17,11 @@ class ItemsController extends Controller
     public function index()
     {
         $items = Items::all();
+        $items = DB::table('items')
+        ->join('categories','items.category_id','categories.id')
+        ->select('items.*','categories.category_name')
+        ->orderBy('items.descriptions','asc')
+        ->get();
         return response()->json($items);
     }
 
@@ -28,25 +34,47 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {     
-        $request->validate([
+        $validateData = $request->validate([
             'item_code'=>'required|unique:items|min:3',
-            'descriptions'=>'required|min:6',
-            'sku'=>'required',
-            'pku'=>'required',
-            'dku'=>'required',
-            'avpu'=>'required',
-            'image'=>'required',
+            'descriptions'=>'required|unique:items|min:6',           
             'category_id'=>'required',
         ]);
-        $items = new Items();
-        $items->item_code = $request->item_code;
-        $items->descriptions = $request->descriptions;
-        $items->sku = $request->sku;
-        $items->pku = $request->pku;
-        $items->dku = $request->dku;
-        $items->avpu = $request->image;
-        $items->category_id = $request->category_id;
-        $items->save();
+
+        if ($request->image){
+            $position = strpos($request->image, ';');
+            $sub = substr($request->image, 0, $position);
+            $ext = explode('/', $sub)[1];
+
+            $name = time().".".$ext;
+            $img = Image::make($request->image)->resize(240,200);
+            $upload_path = 'asset/img/item/';
+            $image_url = $upload_path.$name;
+            $img ->save($image_url);
+
+            $items = new Items;
+            $items->item_code = $request->item_code;
+            $items->descriptions = $request->descriptions;
+            $items->sku = $request->sku;
+            $items->pku = $request->pku;
+            $items->dku = $request->dku;
+            $items->avpu = $request->avpu;
+            $items->category_id = $request->category_id;
+            $items->image = $image_url;
+            $items->save();
+            } else {
+
+            $items = new Items;
+            $items->item_code = $request->item_code;
+            $items->descriptions = $request->descriptions;
+            $items->sku = $request->sku;
+            $items->pku = $request->pku;
+            $items->dku = $request->dku;
+            $items->avpu = $request->avpu;
+            $items->category_id = $request->category_id;
+            
+            $items->save();
+
+        }
     }
 
     /**
@@ -81,6 +109,24 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $image =  $request->image;
+
+
+                  
+        $position = strpos($image, ';');
+        $sub = substr($image, 0, $position);
+        $ext = explode('/', $sub)[1];
+
+        $name = time().".".$ext;
+        $img = Image::make($image)->resize(240,200);
+        $upload_path = 'asset/img/item/';
+        $image_url = $upload_path.$name;  
+        $img ->save($image_url); 
+
+
+
+
         $data = array();
         $data['item_code'] = $request->item_code;
         $data['descriptions'] = $request->descriptions;
@@ -89,9 +135,14 @@ class ItemsController extends Controller
         $data['dku'] = $request->dku;
         $data['avpu'] = $request->avpu;
         $data['category_id'] = $request->category_id;
-        DB::table('finance_categories')->where('id',$id)->update($data);
+      
+            $data['image'] = $image_url;
+         
+            DB::table('items')->where('id',$id)->update($data);
+          
     }
-
+   
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -100,6 +151,14 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('items')->where('id',$id)->delete();
+        $items = DB::table('items')->where('id',$id)->first();
+        $image = $items ->image;
+        if ($image){
+            unlink ($image);
+            DB::table('items')->where('id',$id)->delete();
+        
+        }else{
+            DB::table('items')->where('id',$id)->delete(); 
+        }
     }
 }

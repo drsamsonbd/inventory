@@ -116,31 +116,15 @@
                   
                       <div class="form-group" >
                       <label> &nbsp;&nbsp; Ada pasti?</label>
-                      <input type="hidden" class="form-control border-0" id="InputIC" aria-describedby="IClHelp"
-                        placeholder="password" v-model="formr.password">
-                         <small class="text-danger" v-if="errors.icno">{{errors.icno[0]}}</small>
-                      </div>      
+                       </div>      
 
-                                          
-                     <div class="form-group" hidden>
-                      <label>Email</label>
-                      <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                        placeholder="Enter Email Address" v-model="formr.email">
-                         <small class="text-danger" v-if="errors.email">{{errors.email[0]}}</small>
-                        
-                    </div>
                      <div class="form-group" hidden>
                       <label>IC Number</label>
                       <input type="text" class="form-control" id="InputIC" aria-describedby="IClHelp"
                         placeholder="IC No" v-model="formr.icno">
                          <small class="text-danger" v-if="errors.icno">{{errors.icno[0]}}</small>
                     </div>              
-                    <div class="form-group" hidden>
-                      <label>Role(s):</label>
-                     
-                        <input type="text" class="form-control" v-model="formr.roles">
-                     
-                    </div>
+                    
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block" >Tetapkan semula</button>
                
@@ -483,7 +467,7 @@
      },
        ResetUser(){
        let id = this.formr.id
-       axios.patch('/api/user/'+id, this.formr)
+       axios.patch('api/auth/pw-reset/'+id, this.formr)
        .then(() => {
 
         this.$refs['reset-modal'].hide()

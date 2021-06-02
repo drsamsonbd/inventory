@@ -15,10 +15,7 @@ let department= require('./components/admin/department.vue').default;
  let editsupplier = require('./components/supplier/edit.vue').default;
 
 //Category component
-let storecategory= require('./components/category/create.vue').default;
 let category= require('./components/category/index.vue').default;
-let editcategory= require('./components/category/edit.vue').default;
-
 //product component
 let storeproduct= require('./components/product/create.vue').default;
 let product= require('./components/product/index.vue').default;
@@ -30,6 +27,7 @@ let code = require('./components/finance/category.vue').default;
 
 //items component
 let items = require('./components/items/index.vue').default;
+let itemSetting = require('./components/items/setting.vue').default;
 
 //profile component
 let profile = require('./components/user/UserAccountDetails.vue').default;
@@ -47,8 +45,6 @@ export const routes = [
     { path: '/department', component: department, name:'department' },
     // Category
     { path: '/category', component: category, name:'category' },
-    { path: '/store-category', component: storecategory, name:'store-category' },
-    { path: '/edit-category/:id', component: editcategory, name:'edit-category' },
 
       // Supplier Routes
   { path: '/store-supplier', component: storesupplier, name:'store-supplier'},
@@ -67,6 +63,7 @@ export const routes = [
 
      //item routes
      { path: '/items', component: items, name:'items' },
+     { path: '/itemsetting', component: itemSetting, name:'itemSetting' },
 
 
      //profile routes

@@ -74,6 +74,12 @@ class UserController extends Controller
         $data['email'] = $request->email;
         $data['icno'] = $request->icno;
         $data['roles'] = $request->roles;
+        DB::table('users')->where('id',$id)->update($data);
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $data = array();
         $data['password'] = Hash::make($request->password);
         DB::table('users')->where('id',$id)->update($data);
     }

@@ -8,45 +8,74 @@
  <div class="row">
    <div class="col-lg-12 mb-4">
    <div>
-    <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Daftar Pengguna</b-button>
-
-    <b-modal ref="my-modal" hide-footer title="Daftar Pengguna">
+    <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Item Baru</b-button>
+  <!--Insert Modal-->
+    <b-modal ref="insert-modal" size="lg" hide-footer title="Daftar Item Baru">
     
-           <form class="user" @submit.prevent="register">
-                    <div class="form-group">
-                      <label>Nama</label>
-                      <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Nama mengikut kad pengenalan" v-model="form.name">
-                     <small class="text-danger" v-if="errors.name">{{errors.name[0]}}</small>
-                    </div>            
-                    <div class="form-group">
-                      <label>Email</label>
-                      <input type="email" class="form-control" v-model="form.email" id="exampleInputEmail" aria-describedby="emailHelp"  placeholder="Alamat email rasmi"> 
-                      <small class="text-danger" v-if="errors.email">{{errors.email[0]}}</small>
+           <form class="user" @submit.prevent="insert">
+                 <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Kod Item</label>
+                      <input type="text" class="form-control" id="ItemCode" placeholder="Kod Item" v-model="form.item_code">
+                     <small class="text-danger" v-if="errors.item_code">{{errors.item_code[0]}}</small>
+                    </div>  
+                        <div class="form-group col-md-6">
+                      <label>Kategori Item</label>
+                   <select class="form-control" id="CategoryID" v-model="form.category_id">
+                        <option v-for="category in categories "   v-bind:key="category.id" :value="category.id"> {{category.category_name}}</option>
+                        
+                        </select>
+                   <small class="text-danger" v-if="errors.category_name">{{errors.category_name[0]}}</small>
+                    </div> 
                     </div>
-                     <div class="form-group">
-                      <label>Nombor K/P</label>
-                      <input type="text" class="form-control" id="ICnumber" v-model="form.icno">
-                         <small class="text-danger" v-if="errors.icno">{{errors.icno[0]}}</small>
+                   <div class="form-row">           
+                    <div class="form-group col-md-12">
+                      <label>Deskripsi</label>
+                      <textarea type="text" class="form-control" v-model="form.descriptions" id="ItemDescriptions" placeholder="Deskripsi Item: Nama, Saiz dsb.."></textarea> 
+                      <small class="text-danger" v-if="errors.descriptions">{{errors.descriptions[0]}}</small>
                     </div>
-                    <div class="form-group">
-                      <label>Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword" placeholder="Password" v-model="form.password">
-                   <small class="text-danger" v-if="errors.password">{{errors.password[0]}}</small>
                     </div>
-                    <div class="form-group">
-                      <label>Confirm Password</label>
-                      <input type="password" class="form-control" id="exampleInputPasswordRepeat" placeholder="Confirm Password" v-model="form.password_confirmation">
-                         <small class="text-danger" v-if="errors.password_confirmation">{{errors.password_confirmation[0]}}</small>
+                     <div class="form-row">
+                     <div class="form-group col-md-2" >
+                      <label>SKU</label>
+                      <input type="text" class="form-control" id="SKU" placeholder="Size per unit" v-model="form.sku">
+                         <small class="text-danger" v-if="errors.sku">{{errors.sku[0]}}</small>
                     </div>
+                    <div class="form-group col-md-3">
+                      <label>PKU</label>
+                      <input type="text" class="form-control" id="PKU" placeholder="Packaging" v-model="form.pku">
+                   <small class="text-danger" v-if="errors.pku">{{errors.pku[0]}}</small>
+                    </div>
+                 <div class="form-group col-md-4">
+                      <label>Kuantiti Minimum</label>
+                      <input type="number" step="1" class="form-control" id="minimumOrder" placeholder="Kuantiti Minimum Pembelian" v-model="form.dku">
+                         <small class="text-danger" v-if="errors.dku">{{errors.dku[0]}}</small>
+                    </div>
+                     <div class="form-group col-md-3">
+                      <label>Purata Harga/PKU</label>
+                      <input type="number" step=".0001" class="form-control" id="avpu" placeholder="RM" v-model="form.avpu">
+                         <small class="text-danger" v-if="errors.avpu">{{errors.avpu[0]}}</small>
+                    </div>
+                  </div>
+                    <div class="form-row">
                   
-                   <div class="form-group">
-                      <label>Role(s):</label>
-                     
-                        <input type="text" class="form-control" placeholder="Roles: admin, finance, head, user" v-model="form.roles">
-                     
+                    <div class="form-group col-md-6">        
+                      
+                                   
+                      <input type="file" class="custom-file-input" id="customFile"  @change="onFileSelected" placeholder="Muat naik imej">
+
+                       <label class="custom-file-label" for="customFile" >Pilih Imej</label>
+                        
                     </div>
+                     <div class="form-group col-md-3">                     
+                    <img :src="form.image" alt="" style="height:120px; width:120px;">
+                  
+                    </div>
+
+
+                  </div>
                     <div class="form-group">
-                      <button type="submit"  class="btn btn-primary btn-block">Daftar</button>
+                      <button type="submit"  class="btn btn-primary btn-block">Simpan</button>
                     </div>
                     <hr>
                  
@@ -55,47 +84,82 @@
           
       </b-modal>
   </div>
-  <!--userUpdate Modal-->
+  <!--Update Modal-->
   <div>
-  <b-modal ref="edit-modal" hide-footer title="Kemaskini Pengguna">     
-          <form class="user" @submit.prevent="userUpdate"> 
+  <b-modal ref="update-modal" size="lg" hide-footer title="Kemaskini Item">     
+          <form @submit.prevent="update"> 
                     <div class="form-group" hidden>
                       <label>User ID:</label>
                       <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="forms.id">
-                     
+                    </div>
+                   <div class="form-row">    
+                     <div class="form-group col-md-6">
+                      <label>Kod Item</label>
+                      <input type="text" class="form-control" id="ItemCode" placeholder="Kod Item" v-model="forms.item_code">
+                     <small class="text-danger" v-if="errors.item_code">{{errors.item_code[0]}}</small>
                     </div>  
-                    <div class="form-group">
-                      <label>Full Name</label>
-                      <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Full Name" v-model="forms.name">
-                     <small class="text-danger" v-if="errors.name">{{errors.name[0]}}</small>
-                    </div>            
-                    <div class="form-group">
-                      <label>Email</label>
-                      <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                        placeholder="Enter Email Address" v-model="forms.email">
-                         <small class="text-danger" v-if="errors.email">{{errors.email[0]}}</small>
+                        <div class="form-group col-md-6">
+                      <label>Kategori Item</label>
+                   <select class="form-control" id="CategoryID" v-model="forms.category_id">
+                        <option v-for="category in categories "   v-bind:key="category.id" :value="category.id"> {{category.category_name}}</option>
+                        
+                        </select>
+                   <small class="text-danger" v-if="errors.category_name">{{errors.category_name[0]}}</small>
+                    </div> 
                     </div>
-                     <div class="form-group">
-                      <label>IC Number</label>
-                      <input type="text" class="form-control" id="InputIC" aria-describedby="IClHelp"
-                        placeholder="IC No" v-model="forms.icno">
-                         <small class="text-danger" v-if="errors.icno">{{errors.icno[0]}}</small>
-                    </div>              
-                    <div class="form-group">
-                      <label>Role(s):</label>
-                     
-                        <input type="text" class="form-control" v-model="forms.roles">
-                     
+                   <div class="form-row">           
+                    <div class="form-group col-md-12">
+                      <label>Deskripsi</label>
+                      <textarea type="text" class="form-control" v-model="forms.descriptions" id="ItemDescriptions" placeholder="Deskripsi Item: Nama, Saiz dsb.."></textarea> 
+                      <small class="text-danger" v-if="errors.descriptions">{{errors.descriptions[0]}}</small>
                     </div>
+                    </div>
+                     <div class="form-row">
+                     <div class="form-group col-md-2" >
+                      <label>SKU</label>
+                      <input type="text" class="form-control" id="SKU" placeholder="Size per unit" v-model="forms.sku">
+                         <small class="text-danger" v-if="errors.sku">{{errors.sku[0]}}</small>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label>PKU</label>
+                      <input type="text" class="form-control" id="PKU" placeholder="Packaging" v-model="forms.pku">
+                   <small class="text-danger" v-if="errors.pku">{{errors.pku[0]}}</small>
+                    </div>
+                 <div class="form-group col-md-4">
+                      <label>Kuantiti Minimum</label>
+                      <input type="number" step="1" class="form-control" id="minimumOrder" placeholder="Kuantiti Minimum Pembelian" v-model="forms.dku">
+                         <small class="text-danger" v-if="errors.dku">{{errors.dku[0]}}</small>
+                    </div>
+                     <div class="form-group col-md-3">
+                      <label>Purata Harga/PKU</label>
+                      <input type="number" step=".0001" class="form-control" id="avpu" placeholder="RM" v-model="forms.avpu">
+                         <small class="text-danger" v-if="errors.avpu">{{errors.avpu[0]}}</small>
+                    </div>
+                  </div>
+                    <div class="form-row">
+                  
+                    <div class="form-group col-md-6">        
+                      
+                                   
+                      <input type="file" class="custom-file-input" id="customFile"  @change="onImageSelected" placeholder="Muat naik imej">
+
+                       <label class="custom-file-label" for="customFile" >Pilih Imej</label>
+                        
+                    </div>
+                     <div class="form-group col-md-3">                     
+                    <img :src="forms.image" alt="" style="height:120px; width:120px;">
+                  
+                    </div>
+                     </div>
                     <div class="form-group">
-                      <button type="submit" class="btn btn-primary btn-block" @click="UpdateUser(user.id)">Kemaskini</button>
+                      <button type="submit" class="btn btn-primary btn-block">Kemaskini</button>
                
                     </div>
-               
+              
                   </form> 
    </b-modal>
    </div>
-<!--userUpdate Modal-->
+<!--Update Modal-->
 
 
  </div>
@@ -106,7 +170,7 @@
               <!-- Simple Tables -->
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Senarai Pengguna</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Senarai Items</h6>
                 </div>
 
 
@@ -172,7 +236,11 @@
       stacked="md"
       show-empty
       small
-   
+      responsive 
+      flex 
+      striped 
+      hover
+      @row-clicked="item=>$set(item, '_showDetails', !item._showDetails)"
     >
     
       <template #cell(item)="row">
@@ -180,11 +248,11 @@
       </template>
 
       <template #cell(actions)="row">
-        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1">
-         Edit
+        <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1" v-b-tooltip.hover title="Edit Item">
+             <i class="fas fa-edit"></i>
         </b-button>
-        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)">
-         Delete
+        <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteUser(row.item.id)" v-b-tooltip.hover title="Delete Item">
+          <i class="fas fa-trash-alt"></i>
         </b-button>
       </template>
 
@@ -202,7 +270,7 @@
                     
                 </div>
                 <div class="card-footer">
-                   <p class="mt-3"  align="center">Current Page: {{ currentPage }}</p>
+                   <p class="mt-3"  align="center">Current Page: {{ currentPage }} | Showing {{perPage}} of {{rows}} data.</p>
                       <b-pagination  align="center"
                       v-model="currentPage"
                       :total-rows="rows"
@@ -237,26 +305,24 @@
       Notification.unauthorized()
       this.$router.push({name: 'home'})
     }
-      },
-      
-    
-     created(){
-  	let id = this.$route.params.id
-  	axios.get('/api/user/'+id)
-  	.then(({data}) => (this.forms = data))
-  	.catch(console.log('error'))
-  },
+      },     
+ 
    
      data(){
       return{
-        item:[],
+       
+        categories:[],
         searchTerm:'',
         
           form:{
-        item_code: null,
+          item_code: null,
           descriptions: null,
           sku: null,
           pku: null,
+          dku: null,
+          avpu: null,
+          image: null,
+          category_id:null,
       
         },
           forms:{
@@ -264,6 +330,10 @@
           descriptions: null,
           sku: null,
           pku: null,
+          dku: null,
+          avpu: null,
+          image: null,
+          category_id:null,
       
         },
         errors:{},     
@@ -290,12 +360,12 @@
         filterOn: [],
         items: [],
         fields: [ 
-         
-          { key: 'descriptions', label: 'Item', sortable: true, sortDirection: 'desc' },
+          { key: 'item_code', label: 'Kod ', sortable: true, sortDirection: 'desc' },
+          { key: 'descriptions', label: 'Item ', sortable: true, sortDirection: 'asc' },
           { key: 'sku', label: 'SKU', sortable: true, sortDirection: 'desc' },
           { key: 'dku', label: 'Unit', sortable: true, sortDirection: 'desc' },
           { key: 'avpu', label: 'Harga', sortable: true, sortDirection: 'desc' },
-          { key: 'category_id', label: 'Kategori', sortable: true, sortDirection: 'desc' },
+          { key: 'category_name', label: 'Kategori', sortable: true, sortDirection: 'desc' },
           { key: 'actions', label: 'Actions' },
         ],
       }
@@ -318,6 +388,10 @@
     },
  
   methods:{
+
+    expandAdditionalInfo(row) {
+  row._showDetails = !row._showDetails;
+},
     allItem(){
     let self = this;
      axios.get('/api/items/')
@@ -327,8 +401,50 @@
         console.log(error);
         self.$router.push({ path: '/login' });
       });
-    }
-    ,
+    },
+
+    allCategories(){
+    let self = this;
+     axios.get('/api/category/')
+      .then(function (response) {
+        self.categories = response.data;
+      }).catch(function (error) {
+        console.log(error);
+        self.$router.push({ path: '/login' });
+      });
+    },
+
+    onFileSelected(event){
+      let file = event.target.files[0];
+      if (file.size > 1048770){
+          Notification.image_validation()
+      } else {
+        let read = new FileReader();
+        read.onload = event => {
+            this.form.image = event.target.result
+            console.log(event.target.result);
+
+        };
+        read.readAsDataURL(file);
+      }
+
+    },
+        onImageSelected(event){
+      let file = event.target.files[0];
+      if (file.size > 1048770){
+          Notification.image_validation()
+      } else {
+        let read = new FileReader();
+        read.onload = event => {
+            this.forms.image = event.target.result
+            console.log(event.target.result);
+
+        };
+        read.readAsDataURL(file);
+      }
+
+    },
+
       deleteUser(id){
                 Swal.fire({
                   title: 'Anda pasti?',
@@ -340,12 +456,9 @@
                   confirmButtonText: 'Teruskan'
                 }).then((result) => {
                   if (result.value) {
-                    axios.delete('/api/user/'+id)
+                    axios.delete('/api/items/'+id)
                   .then(() => {
-                    window.location.reload()
-                    this.users = this.users.filter(user => {
-                      return user.id != id
-                    })
+                this.allItem()
                   })
                   .catch(() => {
                   
@@ -360,37 +473,32 @@
 
       },
       showModal() {
-        this.$refs['my-modal'].show()
-      },
-       hideModal() {
-        this.$refs['edit-modal'].hide()
+        this.$refs['insert-modal'].show()
+      
       },
        toggleModal(id) {
-         axios.get('/api/user/'+id)
+         axios.get('/api/items/'+id)
   	    .then(({data}) => (this.forms = data))
-        this.$refs['edit-modal'].toggle('#toggle-btn')
+        this.$refs['update-modal'].toggle('#toggle-btn')
        
       },
    
-       register(){
-          axios.post('/api/auth/register', this.form)
-          .then(() => {
-        window.location.reload()
+       insert(){
+          axios.post('/api/items', this.form)
+          .then(() => {            
+        this.$refs['insert-modal'].hide(); 
+        this.allItem();
         Notification.success()
        })
           .catch(error=> this.errors = error.response.data.errors)
-          .catch(
-            Toast.fire({
-              icon: 'warning',
-              title: 'Invalid data entry'
-            })
-          )
+       
         },
-      userUpdate(){
+     update(){
        let id = this.forms.id
-       axios.patch('/api/user/'+id, this.forms)
+       axios.patch('/api/items/'+id, this.forms)
        .then(() => {
-        window.location.reload()
+        this.$refs['update-modal'].hide(); 
+        this.allItem()
         Notification.success()
        })
        .catch(error =>this.errors = error.response.data.errors)
@@ -400,10 +508,10 @@
   },
   created(){
     this.allItem();
+    this.allCategories();
   },
   mounted: function(){
     this.allItem();
-
   }
 }
 

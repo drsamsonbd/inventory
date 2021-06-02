@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('sku');
             $table->string('pku');
             $table->string('dku');
-            $table->string('avpu')->nullable();
+            $table->string('avpu');
             $table->string('image')->nullable();
             $table->string('category_id');
             $table->timestamps();

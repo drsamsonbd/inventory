@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Items extends Model
 {
     protected $fillable = [
-        'items_code',
+        'item_code',
         'descriptions',
         'sku',
         'pku',
         'dku',
         'avpu',
         'image',
-        'category_id'
+        'category_id',
     ];
 }
