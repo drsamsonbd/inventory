@@ -76,8 +76,8 @@ class PkuController extends Controller
     public function update(Request $request, $id)
     {
         $data = array();
-        $data['pkus'] = $request->pku;
-        DB::table('departments')->where('id',$id)->update($data);
+        $data['pku'] = $request->pku;
+        DB::table('pkus')->where('id',$id)->update($data);
     }
 
     /**

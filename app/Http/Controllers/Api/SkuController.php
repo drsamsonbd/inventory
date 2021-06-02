@@ -75,8 +75,8 @@ class SkuController extends Controller
     public function update(Request $request, $id)
     {
         $data = array();
-        $data['skus'] = $request->sku;
-        DB::table('departments')->where('id',$id)->update($data);
+        $data['sku'] = $request->sku;
+        DB::table('skus')->where('id',$id)->update($data);
     }
 
     /**
