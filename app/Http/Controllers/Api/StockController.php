@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
 use App\Models\stock;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class StockController extends Controller
 {
     /**
@@ -14,7 +14,14 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        $stock = stock::all();
+        $stock = DB::table('stocks')
+        ->join('items','items.id','stocks.item_id')
+        ->join('optimumlevels','stocks.item_id','optimumlevels.item_id')
+        ->select('items.*','stocks.*','optimumlevel')
+        ->orderBy('items.descriptions','asc')
+        ->get();
+        return response()->json($stock);
     }
 
     /**
@@ -35,7 +42,21 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'department_id'=>'required',
+            'item_id'=>'required',
+            'current_level'=>'required',
+            'change_type'=>'required',
+            'change_details'=>'required',
+            'quantity'=>'required',
+            'date'=>'daterequired',
+
+        ]);
+        $optimum = new optimumlevel;
+        $optimum->department_id = $request->department_id;
+        $optimum->item_id = $request->item_id;
+        $optimum->optimum_level = $request->optimum_id;
+        $optimum->save();
     }
 
     /**

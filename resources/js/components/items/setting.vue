@@ -121,7 +121,7 @@
       </form>
            
    </b-modal>-->
-<!--SkU-->
+<!-- SkU -->
   <b-modal ref="sku-update-modal" hide-footer title="Kemaskini">     
            <form class="user" @submit.prevent="SKUUpdate">
          <div class="form-group" hidden>
