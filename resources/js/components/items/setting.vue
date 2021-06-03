@@ -30,7 +30,7 @@
       </b-modal>
 
 
- <!--PKU-->
+ <!--PKU
 
     <b-modal ref="pku-insert-modal" hide-footer title="PKU">
     
@@ -51,7 +51,7 @@
       </form>      
                
           
-      </b-modal>
+      </b-modal>-->
  <!--SKU-->
 
   <b-modal ref="sku-insert-modal" hide-footer title="SKU">
@@ -100,7 +100,7 @@
       </form>
            
    </b-modal>
- <!--PKU-->
+ <!--PKU
   <b-modal ref="pku-update-modal" hide-footer title="Kemaskini">     
            <form class="user" @submit.prevent="PKUUpdate">
          <div class="form-group" hidden>
@@ -120,7 +120,7 @@
         </div>        
       </form>
            
-   </b-modal>
+   </b-modal>-->
 <!--SkU-->
   <b-modal ref="sku-update-modal" hide-footer title="Kemaskini">     
            <form class="user" @submit.prevent="SKUUpdate">
@@ -265,7 +265,7 @@
               
   
     <b-col>
-  <!--pKU table-->
+  <!--pKU table
       <b-row class="shadow-sm p-4 mb-4 bg-white">
       <caption><h5><b>PKU</b></h5></caption>
 
@@ -379,7 +379,7 @@
 
 
    </b-row>
-
+                -->
    <!--SKU table-->
  <b-row class="shadow-sm p-4 mb-4 bg-white">
   <caption><h5><b>SKU</b></h5></caption>
@@ -514,7 +514,7 @@
     },
    mounted(){ 
     this.allCategory();
-    this.allPKU();
+    //this.allPKU();
     this.allSKU();
    
     let $LoggedRoles = localStorage.getItem('roles');
@@ -575,31 +575,31 @@
 
         ],
 //PKU
-          formp:{
-          pku: null,
+ //         formp:{
+  //        pku: null,
           
       
-        },
-          formps:{
-          pku: null,
+    //    },
+      //    formps:{
+        //  pku: null,
           
       
-        },
+ //     },
 
 
-        pkuperPage: 5,
-        pkucurrentPage: 1,
-        pkupageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
-        pkusortBy: 'pku',
-        pkusortDesc: false,
-        pkusortDirection: 'asc',
-        pkufilter: null,
-        pkufilterOn: [],
-          pkuitems: [],
-          pkufields: [
-           { key: 'pku', label: 'PKU', sortable: true, sortDirection: 'asc' },
-            { key: 'actions', label: 'Actions' },
-           ],
+ //     pkuperPage: 5,
+ //     pkucurrentPage: 1,
+ //     pkupageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
+ //     pkusortBy: 'pku',
+ //     pkusortDesc: false,
+ //     pkusortDirection: 'asc',
+ //     pkufilter: null,
+ //     pkufilterOn: [],
+ //       pkuitems: [],
+ //       pkufields: [
+ //        { key: 'pku', label: 'PKU', sortable: true, sortDirection: 'asc' },
+ //         { key: 'actions', label: 'Actions' },
+ //        ],
 
 
 
@@ -642,9 +642,9 @@
       categoryrows() {
         return this.categoryitems.length
       },
-       pkurows() {
-        return this.pkuitems.length
-      },
+    //   pkurows() {
+    //    return this.pkuitems.length
+    //  },
        skurows() {
         return this.skuitems.length
       }
@@ -664,16 +664,16 @@
         self.$router.push({ path: '/login' });
       });
     },
-     allPKU(){
-    let self = this;
-     axios.get('/api/pku/')
-      .then(function (response) {
-        self.pkuitems = response.data;
-      }).catch(function (error) {
-        console.log(error);
-        self.$router.push({ path: '/login' });
-      });
-    },
+ //   allPKU(){
+ //  let self = this;
+ //   axios.get('/api/pku/')
+ //    .then(function (response) {
+ //      self.pkuitems = response.data;
+ //    }).catch(function (error) {
+ //      console.log(error);
+ //      self.$router.push({ path: '/login' });
+ //    });
+ //  },
     allSKU(){
     let self = this;
      axios.get('/api/sku/')
@@ -718,34 +718,34 @@
       },
 
 
-       deletePKU(id){
-                Swal.fire({
-                  title: 'Anda pasti?',
-                  text: "Tindakan ini memadamkan data!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Teruskan'
-               }).then((result) => {
-              if (result.value) {
-                axios.delete('/api/pku/'+id)
-               .then(() => {
-                this.allPKU();
-                         
-                  })
-                  .catch(() => {
-                  
-                  })
-                    Swal.fire(
-                      'Deleted!',
-                      'Telah dipadamkan.',
-                      'success'
-                    )
-                  }
-                })
+   //  deletePKU(id){
+   //           Swal.fire({
+   //             title: 'Anda pasti?',
+   //             text: "Tindakan ini memadamkan data!",
+   //             icon: 'warning',
+   //             showCancelButton: true,
+   //             confirmButtonColor: '#3085d6',
+   //             cancelButtonColor: '#d33',
+   //             confirmButtonText: 'Teruskan'
+   //          }).then((result) => {
+   //         if (result.value) {
+   //           axios.delete('/api/pku/'+id)
+   //          .then(() => {
+   //           this.allPKU();
+   //                    
+   //             })
+   //             .catch(() => {
+   //             
+   //             })
+   //               Swal.fire(
+   //                 'Deleted!',
+   //                 'Telah dipadamkan.',
+   //                 'success'
+   //               )
+   //             }
+   //           })
 
-      },
+   // },
         deleteSKU(id){
                 Swal.fire({
                   title: 'Anda pasti?',
@@ -781,9 +781,9 @@
         this.$refs['insert-modal'].show()
       },
 
-        showModalPKU() {
-        this.$refs['pku-insert-modal'].show()
-      },
+  //     showModalPKU() {
+  //     this.$refs['pku-insert-modal'].show()
+  //   },
 
         showModalSKU() {
         this.$refs['sku-insert-modal'].show()
@@ -800,11 +800,11 @@
   	    .then(({data}) => (this.forms = data))
         this.$refs['update-modal'].toggle('#toggle-btn')       
       },
-        toggleModalPKU(id) {
-         axios.get('/api/pku/'+id)
-  	    .then(({data}) => (this.formps = data))
-        this.$refs['pku-update-modal'].toggle('#pku-toggle-btn')       
-      },
+ //      toggleModalPKU(id) {
+ //       axios.get('/api/pku/'+id)
+ //	    .then(({data}) => (this.formps = data))
+ //      this.$refs['pku-update-modal'].toggle('#pku-toggle-btn')       
+ //    },
       toggleModalSKU(id) {
          axios.get('/api/sku/'+id)
   	    .then(({data}) => (this.formskus = data))
@@ -823,16 +823,16 @@
           .catch(error=> this.errors = error.response.data.errors)
       
         },
-        pkuInsert(){
-        axios.post('/api/pku',this.formp)
-        .then(() => { 
-        this.$refs['pku-insert-modal'].hide('#pku-insert-btn')  
-         this.allPKU();
-        Notification.success()
-       })
-          .catch(error=> this.errors = error.response.data.errors)
-      
-        },
+  //     pkuInsert(){
+  //     axios.post('/api/pku',this.formp)
+  //     .then(() => { 
+  //     this.$refs['pku-insert-modal'].hide('#pku-insert-btn')  
+  //      this.allPKU();
+  //     Notification.success()
+  //    })
+  //       .catch(error=> this.errors = error.response.data.errors)
+  //   
+  //     },
          skuInsert(){
         axios.post('/api/sku',this.formsku)
         .then(() => { 
@@ -857,17 +857,17 @@
        .catch(error =>this.errors = error.response.data.errors)
        
      },
-      PKUUpdate(){
-  	  let id = this.formps.id
-       axios.patch('/api/pku/'+id,this.formps)
-       .then(() => { 
-         this.$refs['pku-update-modal'].hide('#pku-update-btn')
-        this.allPKU();
-        Notification.success()
-       })
-       .catch(error =>this.errors = error.response.data.errors)
-       
-     },
+  //    PKUUpdate(){
+  //	  let id = this.formps.id
+  //     axios.patch('/api/pku/'+id,this.formps)
+  //     .then(() => { 
+  //       this.$refs['pku-update-modal'].hide('#pku-update-btn')
+  //      this.allPKU();
+  //      Notification.success()
+  //     })
+  //     .catch(error =>this.errors = error.response.data.errors)
+  //     
+  //   },
   SKUUpdate(){
   	  let id = this.formskus.id
        axios.patch('/api/sku/'+id,this.formskus)

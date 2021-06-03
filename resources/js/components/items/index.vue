@@ -46,10 +46,12 @@
                     </div>
                     <div class="form-group col-md-3">
                       <label>PKU</label>
-                      <select class="form-control" id="pkuID" v-model="form.pku">
+                          <input type="number" step="1" min="1" class="form-control" id="avpu" placeholder="RM" v-model="form.pku">
+                   
+                   <!--   <select class="form-control" id="pkuID" v-model="form.pku">
                         <option v-for="pku in pkus "   v-bind:key="pku.id" :value="pku.id"> {{pku.pku}}</option>
                         
-                        </select>
+                        </select>-->
                          <small class="text-danger" v-if="errors.pku">{{errors.pku[0]}}</small>
                     </div>
                  <div class="form-group col-md-4">
@@ -131,10 +133,12 @@
                     </div>
                     <div class="form-group col-md-3">
                       <label>PKU</label>
-                      <select class="form-control" id="pkuID" v-model="forms.pku">
+                      <input type="number" step="1" min="1" class="form-control" id="avpu" placeholder="RM" v-model="forms.pku">
+                  
+                  <!--    <select class="form-control" id="pkuID" v-model="forms.pku">
                         <option v-for="pku in pkus "   v-bind:key="pku.id" :value="pku.id"> {{pku.pku}}</option>
                         
-                        </select>
+                        </select>-->
                          <small class="text-danger" v-if="errors.pku">{{errors.pku[0]}}</small>
                     </div>
                  <div class="form-group col-md-4">

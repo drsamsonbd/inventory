@@ -32,6 +32,10 @@ let itemSetting = require('./components/items/setting.vue').default;
 //profile component
 let profile = require('./components/user/UserAccountDetails.vue').default;
 
+//profile component
+let stock = require('./components/stock/index.vue').default;
+
+
 
 export const routes = [
     { path: '/', component: login, name: '/' },
@@ -68,5 +72,8 @@ export const routes = [
 
      //profile routes
      { path: '/profile', component: profile, name:'profile' },
+
+     //stock routes
+     { path: '/stock', component: stock, name:'stock' },
 
   ]

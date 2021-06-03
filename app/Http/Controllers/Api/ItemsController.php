@@ -166,14 +166,7 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        $items = DB::table('items')->where('id',$id)->first();
-        $image = $items ->image;
-        if ($image){
-            unlink ($image);
-            DB::table('items')->where('id',$id)->delete();
+  DB::table('items')->where('id',$id)->delete(); 
         
-        }else{
-            DB::table('items')->where('id',$id)->delete(); 
-        }
     }
 }

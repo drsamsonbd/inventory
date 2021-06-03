@@ -39,9 +39,7 @@
           <span>Dashboard</span></router-link>
       </li>
       <hr class="sidebar-divider">
-      <div class="sidebar-heading">
-        Features
-      </div>
+    
       <!--Admin Function-->
       
       <li id="admin" class="nav-item" style="display:none">
@@ -75,6 +73,22 @@
         </div>
       </li>
 
+    <!--Stock Management-->  
+      <li id="stock" class="nav-item" style="display:none">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
+          aria-expanded="true" aria-controls="collapseBootstrap3">
+          <i class="fas fa-box-open"></i>
+          <span>Stok</span>
+        </a>
+        <div id="collapseBootstrap3" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+           
+            <router-link class="collapse-item" to="/stock">Stok</router-link>
+      <!--      <router-link class="collapse-item" to="/category">Kategori</router-link>-->
+            <router-link class="collapse-item" to="/itemsetting">Tetapan</router-link>
+          </div>
+        </div>
+      </li>
   
       <li id="items" class="nav-item" style="display:none">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
@@ -403,9 +417,10 @@
       $("#admin").css("display","");  
       $("#items").css("display",""); 
       $("#finance").css("display",""); 
+      $("#stock").css("display",""); 
     }
     else if(roles.includes("head")){
-   
+      $("#stock").css("display",""); 
       $("#items").css("display",""); 
     }  
     else if(roles.includes("finance")){
