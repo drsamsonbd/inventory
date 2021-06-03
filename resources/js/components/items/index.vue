@@ -323,16 +323,17 @@
     created(){
       if (!User.loggedIn()) {
         this.$router.push({name: '/'})
+
+         let $LoggedRoles = localStorage.getItem('roles');
+   
+    if($LoggedRoles.toLowerCase().indexOf("head")===-1){
+      this.$router.push({name: 'home'})
+      Notification.unauthorized()
+      }
       }
   
     },
-     OnLoad(){
-     let roles = localStorage.getItem('roles');
-      if(roles.includes("head")-1){
-      Notification.unauthorized()
-      this.$router.push({name: 'home'})
-    }
-      },     
+      
  
    
      data(){
@@ -555,14 +556,19 @@
      },
    
   },
-  created(){
+
+  mounted: function(){
     this.allItem();
     this.allCategories();
     this.allSKU();
     this.allPKU();
-  },
-  mounted: function(){
-    this.allItem();
+
+    
+  
+
+
+
+
   }
 }
 

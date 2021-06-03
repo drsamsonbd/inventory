@@ -504,11 +504,9 @@
   export default {
     created(){
       if (!User.loggedIn()) {
-        this.$router.push({name: '/'})
-     let id = this.$route.params.id
-  	axios.get('/api/category/'+id)
-  	.then(({data}) => (this.form = data))
-  	.catch(console.log('error'));
+        this.$router.push({name: '/'});
+
+   
 
       }
     },
@@ -522,7 +520,8 @@
     if($LoggedRoles.toLowerCase().indexOf("head")===-1){
       this.$router.push({name: 'home'})
       Notification.unauthorized()
-      } 
+      }
+  
     },
   
     

@@ -467,7 +467,7 @@
      },
        ResetUser(){
        let id = this.formr.id
-       axios.patch('api/auth/pw-reset/'+id, this.formr)
+       axios.post('/api/password/update/'+id, this.formr)
        .then(() => {
 
         this.$refs['reset-modal'].hide()
