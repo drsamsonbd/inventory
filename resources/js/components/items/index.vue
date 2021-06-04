@@ -4,10 +4,10 @@
   
   <div>
  <b-breadcrumb :items="itemize"></b-breadcrumb>
- <hr>
+
  <div class="row">
    <div class="col-lg-12 mb-4">
-   <div>
+   
    
   <!--Insert Modal-->
     <b-modal ref="insert-modal" size="lg" hide-footer title="Daftar Item Baru">
@@ -178,7 +178,6 @@
 <!--Update Modal-->
 
 
- </div>
  </div>
 
    <div class="row">

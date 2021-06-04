@@ -4,10 +4,10 @@
   
   <div>
  <b-breadcrumb :items="itemize"></b-breadcrumb>
- <hr>
+ 
  <div class="row">
    <div class="col-lg-12 mb-4">
-   <div>
+  
   <!--Insert Modal-->
       <!--category-->
     <b-modal ref="categoryinsert-modal" hide-footer title="Kategori">
@@ -76,7 +76,7 @@
       </b-modal>
 
 
-  </div>
+ 
   <!--Update Modal-->
   <div>
   <!--category-->
@@ -147,8 +147,7 @@
 
 
 
- </div>
- </div>
+ 
 <!--kategori table-->
 <b-container>
 
@@ -488,6 +487,9 @@
               </b-col>
             </b-row>
           </b-container>
+
+          </div>
+ </div>
      </div>
         
 

@@ -75,12 +75,12 @@
 
     <!--Stock Management-->  
       <li id="stock" class="nav-item" style="display:none">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap3"
-          aria-expanded="true" aria-controls="collapseBootstrap3">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStock"
+          aria-expanded="true" aria-controls="collapseStock">
           <i class="fas fa-box-open"></i>
           <span>Stok</span>
         </a>
-        <div id="collapseBootstrap3" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="collapseStock" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
            
             <router-link class="collapse-item" to="/stock">Stok</router-link>

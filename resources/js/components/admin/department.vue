@@ -4,12 +4,10 @@
   
   <div>
  <b-breadcrumb :items="itemize"></b-breadcrumb>
- <hr>
+ 
  <div class="row">
    <div class="col-lg-12 mb-4">
-   <div>
-    <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal"> Tambah Jabatan</b-button>
-
+   
     <b-modal ref="my-modal" hide-footer title="Tambah Jabatan">
     
            <form class="user" @submit.prevent="registerDept">
@@ -70,7 +68,7 @@
 
 
  </div>
- </div>
+ 
 
    <div class="row">
             <div class="col-lg-12 mb-4">
@@ -83,7 +81,10 @@
 
 
 <b-row>
-        <b-col lg="6" class="my-1">
+   <b-col sm="2" class="my-1" align="left">
+           <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Tambah Jabatan</b-button>
+        </b-col>
+        <b-col sm="6" class="my-1">
         <b-form-group
           label="Filter"
           label-for="filter-input"

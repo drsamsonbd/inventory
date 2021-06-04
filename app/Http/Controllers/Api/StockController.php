@@ -52,7 +52,7 @@ class StockController extends Controller
             'date'=>'daterequired',
 
         ]);
-        $optimum = new optimumlevel;
+        $optimum = new optimumlevels;
         $optimum->department_id = $request->department_id;
         $optimum->item_id = $request->item_id;
         $optimum->optimum_level = $request->optimum_id;
