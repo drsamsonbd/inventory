@@ -8,8 +8,9 @@ responseAfterLogin(res){
     const access_token = res.data.access_token
     const username = res.data.name
     const roles= res.data.roles
+    const user_id= res.data.user_id
     if(Token.isValid(access_token)){
-        AppStorage.store(access_token,username,roles)
+        AppStorage.store(access_token,username,roles,user_id)
 
     }
 }
@@ -34,6 +35,11 @@ name(){
 roles(){
     if(this.loggedIn()){
         return localStorage.getItem('roles');
+    }
+}
+user_id(){
+    if(this.loggedIn()){
+        return localStorage.getItem('user_id');
     }
 }
 id(){

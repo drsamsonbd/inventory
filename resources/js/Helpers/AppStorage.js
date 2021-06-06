@@ -12,11 +12,16 @@ class Appstorage{
 
             
         }
-        store(token, user, roles){
+        storeID(user_id){
+            localStorage.setItem('user_id',user_id);
+
+            
+        }
+        store(token, user, roles, user_id){
             this.storeToken(token)
             this.storeUser(user)
             this.storeRoles(roles)
-
+            this.storeID(user_id)    
         }
 
         clear(){
@@ -24,7 +29,9 @@ class Appstorage{
             localStorage.removeItem('token')
             localStorage.removeItem('user')
             localStorage.removeItem('roles')
+            localStorage.removeItem('user_id')
         }
+
         getToken(){
             localStorage.getItem(token);
         }
@@ -33,6 +40,9 @@ class Appstorage{
         }
         getRoles(){
             localStorage.getItem(roles);
+        }
+        getID(){
+            localStorage.getItem(user_id);
         }
 }
 export default Appstorage = new Appstorage();

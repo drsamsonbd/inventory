@@ -198,11 +198,11 @@
          </b-row>
  <b-row>
     <b-col sm="1" class="my-1" align="right">
-           <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Item Baru</b-button>
+        <b-button pill size="sm" variant="outline-secondary" id="show-btn" @click="showModal"> <i class="fas fa-plus"></i>&nbsp;Tambah</b-button>
         </b-col>
         <b-col sm="6" class="my-1">
         <b-form-group
-          label="Filter"
+          label=""
           label-for="filter-input"
           label-cols-sm="3"
           label-align-sm="right"
@@ -218,7 +218,7 @@
             ></b-form-input>
 
             <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+              <b-button variant="outline-secondary" :disabled="!filter" @click="filter = ''">Clear</b-button>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
@@ -226,7 +226,7 @@
 
       <b-col sm="3" md="3" class="my-1">
         <b-form-group
-          label="Per page"
+          label="Per page"  
           label-for="per-page-select"
           label-cols-sm="6"
           label-cols-md="4"

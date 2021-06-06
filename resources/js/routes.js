@@ -30,9 +30,9 @@ let items = require('./components/items/index.vue').default;
 let itemSetting = require('./components/items/setting.vue').default;
 
 //profile component
-let profile = require('./components/user/UserAccountDetails.vue').default;
+let profile = require('./components/user/Profile.vue').default;
 
-//profile component
+//stock component
 let stock = require('./components/stock/index.vue').default;
 
 

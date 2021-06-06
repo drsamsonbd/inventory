@@ -76,14 +76,21 @@ class UserController extends Controller
         $data['roles'] = $request->roles;
         DB::table('users')->where('id',$id)->update($data);
     }
-
+//reset password to IC
     public function edit(Request $request, $id)
+    {
+        $data = array();
+        $data['password'] = Hash::make($request->icno);
+        DB::table('users')->where('id',$id)->update($data);
+    }
+
+ //selfupdate passowr  
+    public function selfupdate(Request $request, $id)
     {
         $data = array();
         $data['password'] = Hash::make($request->password);
         DB::table('users')->where('id',$id)->update($data);
     }
-
     /**
      * Remove the specified resource from storage.
      *

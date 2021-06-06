@@ -31,3 +31,4 @@ Route::apiResource('/pku', 'Api\PkuController');
 Route::apiResource('/sku', 'Api\SkuController');
 
 Route::post('/password/update/{id}', 'Api\UserController@edit');
+Route::post('/password/selfupdate/{id}', 'Api\UserController@selfupdate');

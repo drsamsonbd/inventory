@@ -81,12 +81,12 @@
 
 
 <b-row>
-   <b-col sm="2" class="my-1" align="left">
-           <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Tambah Jabatan</b-button>
+   <b-col sm="1" class="my-1" align="right">
+           <b-button pill size="sm" variant="outline-secondary" id="show-btn" @click="showModal"> <i class="fas fa-plus"></i>&nbsp;Tambah</b-button>
         </b-col>
         <b-col sm="6" class="my-1">
         <b-form-group
-          label="Filter"
+          label=""
           label-for="filter-input"
           label-cols-sm="3"
           label-align-sm="right"
@@ -98,30 +98,28 @@
               id="filter-input"
               v-model="filter"
               type="search"
-              placeholder="Type to Search"
+              placeholder="Carian"
             ></b-form-input>
 
             <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+              <b-button variant="outline-secondary" :disabled="!filter" @click="filter = ''">Clear</b-button>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
       </b-col>
 
-      <b-col sm="5" md="3" class="my-1">
+      <b-col sm="4"  class="my-1">
         <b-form-group
-          label="Per page"
+          label=""
           label-for="per-page-select"
           label-cols-sm="6"
-          label-cols-md="4"
-          label-cols-lg="3"
           label-align-sm="right"
           label-size="sm"
           class="mb-0"
         >
           <b-form-select
             id="per-page-select"
-            v-model="perPage"
+             v-model="perPage"
             :options="pageOptions"
             size="sm"
           ></b-form-select>
@@ -264,7 +262,7 @@
         filterOn: [],
         items: [],
         fields: [ 
-          { key: 'id', label: 'ID', sortable: true, sortDirection: 'asc' },
+        //  { key: 'id', label: 'ID', sortable: true, sortDirection: 'asc' },
           { key: 'name_department', label: 'Jabatan', sortable: true, sortDirection: 'asc' },
           { key: 'name', label: 'Ketua Jabatan', sortable: true, sortDirection: 'desc' },
           { key: 'actions', label: 'Actions' },

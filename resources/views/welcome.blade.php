@@ -349,10 +349,10 @@
                 
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#/profile">
+              <router-link :to="'/profile/'" class="dropdown-item">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
-                </a>
+                  </router-link>
                 <a class="dropdown-item" href="#">
                   <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                   Settings
@@ -409,7 +409,8 @@
       $("#sidebar").css("display","");
       $("#topbar").css("display","");
       
-    }
+
+}
 </script>
 <script type="text/javascript">
     let roles = localStorage.getItem('roles');
@@ -433,8 +434,7 @@
 
 <script>
 let $Loggeduser = localStorage.getItem('user');
-  
-// Function is called, return 
+  // Function is called, return 
 // value will end up in x
 var x = myFunction();   
 document.getElementById("Loggeduser").innerHTML = x;
@@ -445,6 +445,7 @@ function myFunction() {
 }
   
 </script>
+
 </body>
 
 </html>

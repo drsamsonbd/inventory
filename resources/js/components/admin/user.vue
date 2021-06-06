@@ -7,8 +7,7 @@
  <hr>
  <div class="row">
    <div class="col-lg-12 mb-4">
-   <div>
-    <b-button size="sm" variant="outline-primary" id="show-btn" @click="showModal">Daftar Pengguna</b-button>
+   
 
     <b-modal ref="my-modal" hide-footer title="Daftar Pengguna">
     
@@ -54,7 +53,7 @@
                
           
       </b-modal>
-  </div>
+  
   <!--userUpdate Modal-->
   <div>
   <b-modal ref="edit-modal" hide-footer title="Kemaskini Pengguna">     
@@ -118,11 +117,10 @@
                       <label> &nbsp;&nbsp; Ada pasti?</label>
                        </div>      
 
-                     <div class="form-group" hidden>
+                     <div class="form-group" >
                       <label>IC Number</label>
                       <input type="text" class="form-control" id="InputIC" aria-describedby="IClHelp"
                         placeholder="IC No" v-model="formr.icno">
-                         <small class="text-danger" v-if="errors.icno">{{errors.icno[0]}}</small>
                     </div>              
                     
                     <div class="form-group">
@@ -147,11 +145,13 @@
                 </div>
 
 
-
 <b-row>
-        <b-col lg="6" class="my-1">
+   <b-col sm="1" class="my-1" align="right">
+           <b-button pill size="sm" variant="outline-secondary" id="show-btn" @click="showModal"> <i class="fas fa-plus"></i>&nbsp;Tambah</b-button>
+        </b-col>
+        <b-col sm="6" class="my-1">
         <b-form-group
-          label="Filter"
+          label=""
           label-for="filter-input"
           label-cols-sm="3"
           label-align-sm="right"
@@ -163,30 +163,28 @@
               id="filter-input"
               v-model="filter"
               type="search"
-              placeholder="Type to Search"
+              placeholder="Carian"
             ></b-form-input>
 
             <b-input-group-append>
-              <b-button :disabled="!filter" @click="filter = ''">Clear</b-button>
+              <b-button variant="outline-secondary" :disabled="!filter" @click="filter = ''">Clear</b-button>
             </b-input-group-append>
           </b-input-group>
         </b-form-group>
       </b-col>
 
-      <b-col sm="5" md="3" class="my-1">
+      <b-col sm="4"  class="my-1">
         <b-form-group
-          label="Per page"
+          label=""
           label-for="per-page-select"
           label-cols-sm="6"
-          label-cols-md="4"
-          label-cols-lg="3"
           label-align-sm="right"
           label-size="sm"
           class="mb-0"
         >
           <b-form-select
             id="per-page-select"
-            v-model="perPage"
+             v-model="perPage"
             :options="pageOptions"
             size="sm"
           ></b-form-select>
@@ -267,28 +265,43 @@
 <script type="text/javascript">
  
   export default {
-    created(){
+      created(){
       if (!User.loggedIn()) {
         this.$router.push({name: '/'})
+
+    
       }
   
+      let token = localStorage.getItem('token');
+    if(!token){
+      this.$router.push({name: '/'})
+      }
     },
+      
      mounted(){
      let roles = localStorage.getItem('roles');
       if(roles.includes("admin")-1){
       this.$router.push({name: 'home'})
       Notification.unauthorized()
     }
+ 
+        this.allUser();
+ 
       },
-      
+
     
-     created(){
-  	let id = this.$route.params.id
-  	axios.get('/api/user/'+id)
-  	.then(({data}) => (this.forms = data))
-  	.catch(console.log('error'))
-  },
-   
+  
+ 
+
+
+
+
+
+
+
+
+
+  
      data(){
       return{
         users:[],
@@ -311,13 +324,9 @@
       
         },
         formr:{
-          name: null,
-          email: null,
+       
           icno: null,
-          password: null,
-          confirm_password: null,
-          roles: null,
-      
+         
         },
         errors:{},     
         
@@ -333,7 +342,7 @@
         ],
           modalShow: false,
 
-        perPage: 10,
+        perPage: 20,
         currentPage: 1,
         pageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
         sortBy: 'name',
@@ -478,24 +487,9 @@
      },
    
   },
-  created(){
-    this.allUser();
-     document.getElementById("myBtn").addEventListener("click", myFunction);
-
-  function myFunction() {
-   this.userUpdate();
-    }
-  },
-    
-  
-  mounted: function(){
-    this.allUser();
- 
-  }
-  }
 
 
-   
+  }   
 </script>
 
 
