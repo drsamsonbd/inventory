@@ -11,4 +11,10 @@ class Department extends Model
         'name_department',
         'icno_hod',
     ];
+
+
+    public function category()
+    {
+        return $this->belongsTo('App\Items', 'category_id');
+    }
 }

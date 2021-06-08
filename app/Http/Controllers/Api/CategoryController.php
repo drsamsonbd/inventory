@@ -90,4 +90,14 @@ class CategoryController extends Controller
     {
         DB::table('categories')->where('id',$id)->delete();
     }
+
+
+
+    public function category()
+{
+    return $this->belongsTo('App\Items', 'category_id');
 }
+}
+
+
+

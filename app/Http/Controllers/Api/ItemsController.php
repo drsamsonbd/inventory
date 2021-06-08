@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api  ;
 use App\Http\Controllers\Controller;
 use App\Models\Items;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Image;
@@ -17,14 +18,33 @@ class ItemsController extends Controller
     public function index()
     {
         $items = Items::all();
-        $items = DB::table('items')
-      //  ->join('categories','items.category_id','categories.id')
-      // ->join('skus','items.category_id','skus.id')
+       // $items = DB::table('items')
+       //->join('categories','items.category_id','categories.id')
+      //->join('skus','items.category_id','skus.id')
       // ->join('pkus','items.category_id','pkus.id')
       // ->select('items.*','categories.category_name','skus.sku','pkus.pku')
-        ->orderBy('items.descriptions','asc')
-        ->get();
+      //  ->orderBy('descriptions','asc')
+      //  ->get();
         return response()->json($items);
+
+   
+
+        
+    }
+    public function view($id)
+    {
+        $items = DB::table('items')->where('items.id',$id)
+       ->join('categories','items.category_id','categories.id')
+      ->join('skus','items.sku','skus.id')
+      // ->join('pkus','items.category_id','pkus.id')
+       ->select('items.*','categories.category_name','skus.sku')
+      //  ->orderBy('descriptions','asc')
+       ->get();
+        return response()->json($items);
+
+    
+
+        
     }
 
 
@@ -89,6 +109,7 @@ class ItemsController extends Controller
     {
         $Items = DB::table('items')->where('id',$id)->first();
         return response()->json($Items);
+     
     }
 
     /**

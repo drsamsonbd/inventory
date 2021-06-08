@@ -176,8 +176,28 @@
    </b-modal>
    </div>
 <!--Update Modal-->
+<!--viewModal-->
+<b-modal ref="view-modal" size="lg" hide-footer title="Item Details">     
+            
+              <b-row>      
+                 <b-col>
+                  <label><b>ID:</b></label><br>
+  <p v-for="view in views" v-bind:key="view.id">
+        {{category_name}}
+      </p>
+                 </b-col>
+                      
+            
+               </b-row>
+
+            
 
 
+              
+    
+   </b-modal>
+ 
+<!--end View Modal-->
  </div>
 
    <div class="row">
@@ -266,7 +286,7 @@
       flex 
       striped 
       hover
-      @row-clicked="item=>$set(item, '_showDetails', !item._showDetails)"
+      @row-clicked="viewModal"
     >
     
       <template #cell(item)="row">
@@ -286,6 +306,7 @@
         <b-card>
           <ul>
             <li v-for="(value, key) in row.item" :key="key">{{ key }}: {{ value }}</li>
+            
           </ul>
         </b-card>
       </template>
@@ -331,16 +352,13 @@
       }
       }
   
-    },
-      
+    }, 
  
    
      data(){
       return{
        
-        categories:[],
-        searchTerm:'',
-        
+        views:[],        
           form:{
           item_code: null,
           descriptions: null,
@@ -363,6 +381,7 @@
           category_id:null,
       
         },
+         
         errors:{},     
         
         itemize: [
@@ -416,9 +435,7 @@
  
   methods:{
 
-    expandAdditionalInfo(row) {
-  row._showDetails = !row._showDetails;
-},
+ 
     allItem(){
     let self = this;
      axios.get('/api/items/')
@@ -531,6 +548,13 @@
         this.$refs['update-modal'].toggle('#toggle-btn')
        
       },
+      
+       viewModal(record) {
+         axios.get('/api/items/view/'+record.id)
+  	    .then(({data}) => (this.view = data))
+        this.$refs['view-modal'].toggle('#toggle-btn')
+       
+      },
    
        insert(){
           axios.post('/api/items', this.form)
@@ -557,12 +581,14 @@
   },
 
   mounted: function(){
+
+    
     this.allItem();
     this.allCategories();
     this.allSKU();
     this.allPKU();
 
-    
+     this.viewModal();
   
 
 
