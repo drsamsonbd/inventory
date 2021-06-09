@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group col-md-3">
                       <label>PKU</label>
-                          <input type="number" step="1" min="1" class="form-control" id="avpu" placeholder="RM" v-model="form.pku">
+                          <input type="number" step="1" min="1" class="form-control" id="avpu" placeholder="" v-model="form.pku">
                    
                    <!--   <select class="form-control" id="pkuID" v-model="form.pku">
                         <option v-for="pku in pkus "   v-bind:key="pku.id" :value="pku.id"> {{pku.pku}}</option>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="form-group col-md-3">
                       <label>PKU</label>
-                      <input type="number" step="1" min="1" class="form-control" id="avpu" placeholder="RM" v-model="forms.pku">
+                      <input type="number" step="1" min="1" class="form-control" id="avpu" placeholder="" v-model="forms.pku">
                   
                   <!--    <select class="form-control" id="pkuID" v-model="forms.pku">
                         <option v-for="pku in pkus "   v-bind:key="pku.id" :value="pku.id"> {{pku.pku}}</option>
@@ -176,24 +176,79 @@
    </b-modal>
    </div>
 <!--Update Modal-->
-<!--viewModal-->
-<b-modal ref="view-modal" size="lg" hide-footer title="Item Details">     
-            
+
+
+
+ <!--View Modal-->
+    <b-modal ref="view-modal" size="lg" hide-footer title="Item Details">     
+       <b-row>    
+            <b-col align="center">
+             
+             <div class="form-group col-md-3">                     
+                    <img v-for="view in views"  v-bind:key="view.id" :src="view.image" alt="" style="height:240px; width:240px;">
+                  
+                    </div>
+             
+      </b-col>
+
+
+
+       </b-row>            
               <b-row>      
                  <b-col>
-                  <label><b>ID:</b></label><br>
-  <p v-for="view in views" v-bind:key="view.id">
-        {{category_name}}
-      </p>
+                  <label><b>Item ID:</b></label><br>
+                  <p v-for="view in views"  v-bind:key="view.id" > {{view.id}} </p>
                  </b-col>
                       
-            
+                  <b-col>
+                    
+                    <label><b>Kod Item</b></label><br>  <p v-for="view in views" v-bind:key="view.id" > {{view.item_code}}</p>
+                     </b-col> 
+
+                    <b-col>
+                     <label><b>Kategori Item</b></label><br>
+                     <p v-for="view in views" v-bind:key="view.id"> {{view.category_name}} </p>
+
+                    </b-col>
                </b-row>
 
-            
+              <b-row>
+
+              <b-col>
+          <label><b>Deskripsi</b></label><br> <p v-for="view in views" v-bind:key="view.id"> {{view.descriptions}}</p>
+
+              </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+
+                  <label for=""><b>SKU</b></label><br> <p v-for="view in views" v-bind:key="view.id" > {{view.sku}}</p>
 
 
-              
+                </b-col>
+
+              <b-col>
+
+                  <label for=""><b>PKU</b></label><br> <p v-for="view in views" v-bind:key="view.id" > {{view.pku}}</p>
+
+
+                </b-col>
+              <b-col>
+
+                  <label for=""><b>Kuantiti Minimum</b></label><br> <p v-for="view in views" v-bind:key="view.id"> {{view.dku}}</p>
+
+
+                </b-col>
+                <b-col>
+
+                  <label for=""><b>Harga</b></label><br> <p v-for="view in views" v-bind:key="view.id"> {{view.avpu}}</p>
+
+
+                </b-col>
+
+
+              </b-row>          
+    
     
    </b-modal>
  
@@ -357,9 +412,11 @@
    
      data(){
       return{
-       
-        views:[],        
+       skus:[],
+       categories:[],
+        views:[],      
           form:{
+          id: null,  
           item_code: null,
           descriptions: null,
           sku: null,
@@ -369,8 +426,9 @@
           image: null,
           category_id:null,
       
-        },
+      },
           forms:{
+            id: null,
           item_code: null,
           descriptions: null,
           sku: null,
@@ -550,8 +608,11 @@
       },
       
        viewModal(record) {
-         axios.get('/api/items/view/'+record.id)
-  	    .then(({data}) => (this.view = data))
+          let self = this;
+            axios.get('/api/items/view/'+record.id)
+  	     .then(function (response) {
+        self.views = response.data;
+        })
         this.$refs['view-modal'].toggle('#toggle-btn')
        
       },
