@@ -466,10 +466,7 @@
         fields: [ 
           { key: 'item_code', label: 'Kod ', sortable: true, sortDirection: 'desc' },
           { key: 'descriptions', label: 'Item ', sortable: true, sortDirection: 'asc' },
-          { key: 'sku', label: 'SKU', sortable: true, sortDirection: 'desc' },
-          { key: 'dku', label: 'Unit', sortable: true, sortDirection: 'desc' },
-          { key: 'avpu', label: 'Harga', sortable: true, sortDirection: 'desc' },
-          { key: 'category_name', label: 'Kategori', sortable: true, sortDirection: 'desc' },
+          { key: 'avpu', label: 'Harga/Pack', sortable: true, sortDirection: 'desc' },
           { key: 'actions', label: 'Actions' },
         ],
       }
