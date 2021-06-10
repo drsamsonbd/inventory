@@ -10,7 +10,7 @@
   
   <!--Insert Modal-->
       <!--category-->
-    <b-modal ref="categoryinsert-modal" hide-footer title="Kategori">
+    <b-modal ref="category-insert-modal" hide-footer title="Kategori">
     
             <form class="user" @submit.prevent="categoryInsert">
 
@@ -779,7 +779,7 @@
 // show insert modal
 
       showModal() {
-        this.$refs['insert-modal'].show()
+        this.$refs['category-insert-modal'].show()
       },
 
   //     showModalPKU() {

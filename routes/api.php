@@ -26,6 +26,7 @@ Route::apiResource('/category', 'Api\CategoryController');
 Route::apiResource('/user', 'Api\UserController');
 Route::apiResource('/department', 'Api\DepartmentController');
 Route::apiResource('/finance_category', 'Api\FinanceCategoryController');
+Route::apiResource('/ol', 'Api\ObjekLanjutController');
 Route::apiResource('/items', 'Api\ItemsController');
 Route::apiResource('/pku', 'Api\PkuController');
 Route::apiResource('/sku', 'Api\SkuController');
