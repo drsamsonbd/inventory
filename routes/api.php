@@ -30,7 +30,11 @@ Route::apiResource('/ol', 'Api\ObjekLanjutController');
 Route::apiResource('/items', 'Api\ItemsController');
 Route::apiResource('/pku', 'Api\PkuController');
 Route::apiResource('/sku', 'Api\SkuController');
+Route::apiResource('/optimum', 'Api\OptimumlevelController');
+
 
 Route::post('/password/update/{id}', 'Api\UserController@edit');
 Route::post('/password/selfupdate/{id}', 'Api\UserController@selfupdate');
 Route::get('/items/view/{id}', 'Api\ItemsController@view');
+Route::get('/optimum/view/{id}', 'Api\OptimumlevelController@view');
+;

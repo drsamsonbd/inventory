@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\optimumlevel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class OptimumlevelController extends Controller
 {
     /**
@@ -16,12 +17,13 @@ class OptimumlevelController extends Controller
     public function index()
     {
         $optimum = optimumlevel::all();
-        $optimum = DB::table('optimumlevels')
-      ->join('items','items.id','optimumlevels.item_id')
-      ->join('stocks','stocks.item_id','optimumlevels.item_id')
-      ->select('items.*','stocks.*','optimumlevel')
-      ->orderBy('items.descriptions','asc')
-        ->get();
+      //  $optimum = DB::table('optimumlevels')
+     // ->join('items','items.id','optimumlevels.item_id')
+     // ->join('stocks','stocks.item_id','optimumlevels.item_id')
+     // ->join('departments','departments.id','optimumlevels.department_id')
+     // ->select('items.*','stocks.*','optimumlevels.*','departments.name_department')
+     // ->orderBy('items.descriptions','asc')
+     //   ->get();
         return response()->json($optimum);
     }
 
@@ -30,9 +32,17 @@ class OptimumlevelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function view($id)
+    {   
+        $optimum = DB::table('optimumlevels')->where('optimumlevels.department_id',$id)
+       
+       ->join('items','items.id','optimumlevels.item_id')
+       // ->join('stocks','stocks.item_id','optimumlevels.item_id')
+       // ->join('departments','departments.id','optimumlevels.department_id')
+       ->select('items.descriptions','optimumlevels.*')
+       ->orderBy('items.descriptions','asc')
+       ->get();
+          return response()->json($optimum);
     }
 
     /**
@@ -44,14 +54,16 @@ class OptimumlevelController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'department_id'=>'required',
-            'item_id'=>'required',
+            'current_team_id'=>'required',
+            'selected'=>'required',
             'optimum_level'=>'required',
+            'minimum_level'=>'required',
         ]);
         $optimum = new optimumlevel;
-        $optimum->department_id = $request->department_id;
-        $optimum->item_id = $request->item_id;
-        $optimum->optimum_level = $request->optimum_id;
+        $optimum->department_id = $request->current_team_id;
+        $optimum->item_id = $request->selected;
+        $optimum->optimum_level = $request->optimum_level;
+        $optimum->minimum_level = $request->minimum_level;
         $optimum->save();
     }
 
@@ -61,12 +73,24 @@ class OptimumlevelController extends Controller
      * @param  \App\Models\optimumlevel  $optimumlevel
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id) // get item
     {
         $optimum = DB::table('optimumlevels')->where('id',$id)->first();
         return response()->json($optimum);
-    }
 
+    }
+    public function showbydept($id)// by department
+    {
+        $optimum = DB::table('optimumlevels')->where('optimumlevels.id',$id)
+        ->join('items','items.id','optimumlevels.item_id')
+        // ->join('stocks','stocks.item_id','optimumlevels.item_id')
+        // ->join('departments','departments.id','optimumlevels.department_id')
+        ->select('items.descriptions','optimumlevels.id', 'optimumlevels.optimum_level', 'optimumlevels.minimum_level')
+        ->orderBy('items.descriptions','asc')
+        ->get();
+
+        return response()->json($optimum);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -87,10 +111,9 @@ class OptimumlevelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = array();
-        $data['department_id'] = $request->department_id;
-        $data['item_id'] = $request->item_id;
+        $data = array();       
         $data['optimum_level'] = $request->optimum_level;
+        $data['minimum_level'] = $request->minimum_level;
         DB::table('optimumlevels')->where('id',$id)->update($data);
     }
 

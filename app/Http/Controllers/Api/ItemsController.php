@@ -135,8 +135,8 @@ class ItemsController extends Controller
      
        
 
-        if ($request->image){
-         $image =  $request->image;         
+        if ($request->newimage){
+        $image =  $request->newimage;         
         $position = strpos($image, ';');
         $sub = substr($image, 0, $position);
         $ext = explode('/', $sub)[1];

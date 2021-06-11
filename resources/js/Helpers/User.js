@@ -9,8 +9,9 @@ responseAfterLogin(res){
     const username = res.data.name
     const roles= res.data.roles
     const user_id= res.data.user_id
+    const current_team_id= res.data.current_team_id
     if(Token.isValid(access_token)){
-        AppStorage.store(access_token,username,roles,user_id)
+        AppStorage.store(access_token,username,roles,user_id,current_team_id)
 
     }
 }
@@ -49,7 +50,12 @@ id(){
     }
     return false
 }
+current_team_id(){
+    if(this.loggedIn()){
+        return localStorage.getItem('current_team_id');
+    }
 
+}
 
 
 }

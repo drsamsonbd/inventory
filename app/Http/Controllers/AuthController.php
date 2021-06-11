@@ -113,7 +113,7 @@ class AuthController extends Controller
             'user_id' => auth()->user()->id,
             'icno' => auth()->user()->icno,
             'roles' => auth()->user()->roles,
-
+            'current_team_id' => auth()->user()->current_team_id,   
         ]);
     }
     

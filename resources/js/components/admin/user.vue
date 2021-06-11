@@ -64,26 +64,35 @@
                      
                     </div>  
                     <div class="form-group">
-                      <label>Full Name</label>
-                      <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter Full Name" v-model="forms.name">
+                      <label>Nama Penuh</label>
+                      <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Nama penuh" v-model="forms.name">
                      <small class="text-danger" v-if="errors.name">{{errors.name[0]}}</small>
                     </div>            
                     <div class="form-group">
                       <label>Email</label>
                       <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                        placeholder="Enter Email Address" v-model="forms.email">
+                        placeholder="Alamat email" v-model="forms.email">
                          <small class="text-danger" v-if="errors.email">{{errors.email[0]}}</small>
                     </div>
                      <div class="form-group">
                       <label>IC Number</label>
                       <input type="text" class="form-control" id="InputIC" aria-describedby="IClHelp"
-                        placeholder="IC No" v-model="forms.icno">
+                        placeholder="Nombor Kad Pengenalan" v-model="forms.icno">
                          <small class="text-danger" v-if="errors.icno">{{errors.icno[0]}}</small>
                     </div>              
                     <div class="form-group">
                       <label>Role(s):</label>
                      
                         <input type="text" class="form-control" v-model="forms.roles">
+                     
+                    </div>
+
+                    <div class="form-group">
+                      <label>Jabatan:</label>
+                      <select class="form-control" id="Jabatan" v-model="forms.current_team_id">
+                        <option v-for="department in departments "   v-bind:key="department.id" :value="department.id"> {{department.name_department}}</option>
+                        
+                        </select>
                      
                     </div>
                     <div class="form-group">
@@ -117,7 +126,7 @@
                       <label> &nbsp;&nbsp; Ada pasti?</label>
                        </div>      
 
-                     <div class="form-group" >
+                     <div class="form-group" hidden >
                       <label>IC Number</label>
                       <input type="text" class="form-control" id="InputIC" aria-describedby="IClHelp"
                         placeholder="IC No" v-model="formr.icno">
@@ -286,24 +295,14 @@
     }
  
         this.allUser();
+        this.allDept();
  
       },
 
-    
-  
- 
-
-
-
-
-
-
-
-
-
-  
+      
      data(){
       return{
+        departments:[],
         users:[],
         searchTerm:'',
         
@@ -379,6 +378,18 @@
     },
  
   methods:{
+      allDept(){
+    let self = this;
+     axios.get('/api/department/')
+      .then(function (response) {
+        self.departments = response.data;
+      }).catch(function (error) {
+        console.log(error);
+        self.$router.push({ path: '/login' });
+      });
+    },
+
+
     allUser(){
     let self = this;
      axios.get('/api/user/')

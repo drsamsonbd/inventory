@@ -93,10 +93,7 @@ class CategoryController extends Controller
 
 
 
-    public function category()
-{
-    return $this->belongsTo('App\Items', 'category_id');
-}
+ 
 }
 
 

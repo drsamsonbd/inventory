@@ -162,7 +162,7 @@
                        <label class="custom-file-label" for="customFile" >Pilih Imej</label>
                         
                     </div>
-                     <div class="form-group col-md-3">                     
+                     <div class="form-group col-md-3" hidden>                     
                     <img :src="forms.image" alt="" style="height:120px; width:120px;">
                   
                     </div>
@@ -436,6 +436,7 @@
           dku: null,
           avpu: null,
           image: null,
+          newimage: null,
           category_id:null,
       
         },
@@ -555,15 +556,16 @@
       if (file.size > 1048770){
           Notification.image_validation()
       } else {
-        let read = new FileReader();
-        read.onload = event => {
-            this.forms.image = event.target.result
+        let reader = new FileReader();
+        reader.onload = event => {
+            this.forms.newimage = event.target.result
             console.log(event.target.result);
+            Notification.Imagesuccess()
 
         };
-        read.readAsDataURL(file);
+        reader.readAsDataURL(file);
       }
-
+      
     },
 
       deleteUser(id){

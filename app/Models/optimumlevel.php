@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class optimumlevel extends Model
 {
     protected $fillable = [
-       'department_id','item_id','optimum_level'
+       'department_id','item_id','optimum_level','minimum_level'
     ];
 }

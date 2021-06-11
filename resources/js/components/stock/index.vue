@@ -9,7 +9,7 @@
    <div class="col-lg-12 mb-4">
    <div>
    
-  <!--Insert Modal-->
+   <!--Insert Modal-->
     <b-modal ref="insert-modal" size="lg" hide-footer title="Daftar Item Baru">
     
            <form class="user" @submit.prevent="insert">
@@ -89,19 +89,19 @@
                
           
       </b-modal>
-  </div>
+   </div>
   <!--Update Modal-->
   <div>
   <b-modal ref="update-modal" size="lg" hide-footer title="Kemaskini Item">     
           <form @submit.prevent="update"> 
                     <div class="form-group" hidden>
                       <label>User ID:</label>
-                      <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="forms.id">
+                      <input type="hidden" class="form-control" id="exampleInputID" placeholder="ID" v-model="id">
                     </div>
                    <div class="form-row">    
                      <div class="form-group col-md-6">
                       <label>Kod Item</label>
-                      <input type="text" class="form-control" id="ItemCode" placeholder="Kod Item" v-model="forms.item_code">
+                      <input type="text" class="form-control" id="ItemCode" placeholder="Kod Item" v-model="item_code">
                      <small class="text-danger" v-if="errors.item_code">{{errors.item_code[0]}}</small>
                     </div>  
                         <div class="form-group col-md-6">

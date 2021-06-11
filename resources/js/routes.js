@@ -34,7 +34,7 @@ let profile = require('./components/user/Profile.vue').default;
 
 //stock component
 let stock = require('./components/stock/index.vue').default;
-
+let stock_setting = require('./components/stock/setting.vue').default;
 
 
 export const routes = [
@@ -75,5 +75,5 @@ export const routes = [
 
      //stock routes
      { path: '/stock', component: stock, name:'stock' },
-
+     { path: '/stock-setting', component: stock_setting, name:'stock-setting' },
   ]

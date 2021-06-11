@@ -204,10 +204,13 @@
 
  
 <!--kategori table-->
-<b-container>
+<container>
 
 <b-row>
-    <b-col class="shadow-sm p-4 mb-4 bg-white">
+   <div class="col-lg-6 mb-4">
+              <!-- Simple Tables -->
+              <div class="card">
+    <b-col class="shadow-sm  bg-white">
            <caption><h5><b>Kategori</b></h5></caption>  
  
       <b-row>
@@ -318,7 +321,13 @@
 
 
    <!--ol table-->
- <b-col class="shadow-sm p-4 mb-4 bg-white">
+
+      </div>
+      </div>
+      <div class="col-lg-6 mb-4">
+              <!-- Simple Tables -->
+              <div class="card">
+    <b-col class="shadow-sm  bg-white">
    <b-row>
 
 
@@ -426,8 +435,12 @@
                     ></b-pagination>
 
   </b-col>
+              </div>
+   </div>
+   
     </b-row>
-</b-container>
+    
+</container>
 
           </div>
  </div>

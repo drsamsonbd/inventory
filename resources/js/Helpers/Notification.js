@@ -9,6 +9,15 @@ class Notification{
         }).show();
 
     }
+    Imagesuccess(){
+        new Noty({
+            type : 'success',
+            layout: 'topRight',
+            text: 'Imej telah dimuat naik!',
+            timeout: 1000,
+        }).show();
+
+    }
     alert(){
         new Noty({
             type : 'alert',

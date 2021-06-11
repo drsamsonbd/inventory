@@ -74,6 +74,7 @@ class UserController extends Controller
         $data['email'] = $request->email;
         $data['icno'] = $request->icno;
         $data['roles'] = $request->roles;
+        $data['current_team_id'] = $request->current_team_id;
         DB::table('users')->where('id',$id)->update($data);
     }
 //reset password to IC

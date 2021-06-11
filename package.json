@@ -36,6 +36,7 @@
         "sweetalert2": "^10.13.0",
         "vue": "^2.6.12",
         "vue-pagination-2": "^3.0.9",
-        "vue-router": "^3.4.9"
+        "vue-router": "^3.4.9",
+        "vue-select": "^3.11.2"
     }
 }

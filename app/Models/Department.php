@@ -13,8 +13,5 @@ class Department extends Model
     ];
 
 
-    public function category()
-    {
-        return $this->belongsTo('App\Items', 'category_id');
-    }
+ 
 }

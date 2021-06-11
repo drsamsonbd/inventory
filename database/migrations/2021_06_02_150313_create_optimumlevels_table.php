@@ -18,6 +18,7 @@ class CreateOptimumlevelsTable extends Migration
             $table->string('department_id');
             $table->string('item_id');
             $table->string('optimum_level');
+            $table->string('minimum_level');
             $table->timestamps();
         });
     }

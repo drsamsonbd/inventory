@@ -66,7 +66,6 @@
         <div id="collapseBootstrap2" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
            
-            <router-link  class="collapse-item" to="/store-category">Tambah Kategori</router-link>
             <router-link class="collapse-item" to="/allocation">Peruntukan</router-link>
             <router-link class="collapse-item" to="/code">Kod Peruntukan</router-link>
           </div>
@@ -83,9 +82,10 @@
         <div id="collapseStock" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
            
-            <router-link class="collapse-item" to="/stock">Stok</router-link>
-      <!--      <router-link class="collapse-item" to="/category">Kategori</router-link>-->
-            <router-link class="collapse-item" to="/itemsetting">Tetapan</router-link>
+            <router-link class="collapse-item" to="/stock">Keluar</router-link>
+          <router-link class="collapse-item" to="/category">Terima</router-link>
+           <router-link class="collapse-item" to="/category">Pembelian</router-link>
+            <router-link class="collapse-item" to="/stock-setting">Tetapan</router-link>
           </div>
         </div>
       </li>

@@ -11,7 +11,11 @@ import {routes} from './routes';
 import User from './Helpers/User';
 window.User = User
 
+//Import Vue-select
+import vSelect from 'vue-select'
 
+Vue.component('v-select', vSelect)
+import 'vue-select/dist/vue-select.css';
 
  // Import Notification Class
  import Notification from './Helpers/Notification';
