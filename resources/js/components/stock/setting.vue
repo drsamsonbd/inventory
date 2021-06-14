@@ -175,13 +175,24 @@
       small
     
         >
-        <template #cell(index)="data">
-            {{ data.index + 1 }}
-        </template>
+
         <template #cell( items)="row">
             {{ row.value.first }} {{ row.value.last }}
         </template>
 
+ <template #cell(image)="row">
+    
+       <img     
+            class="d-block img-fluid w-60"
+            width="60"
+            height="60"
+            :src="row.item.image"
+            alt="image slot"
+        >     
+    
+</template>
+
+        
         <template #cell(actions)="row">
             <b-button size="sm" id="toggle-btn"  @click="toggleModal(row.item.id)" class="mr-1" v-b-tooltip.hover title="Edit Item">
              <i class="fas fa-edit"></i>
@@ -320,6 +331,7 @@
          filterOn: [],
          items: [],
          fields: [
+          { key: 'image', label: 'Imej', sortable:false, sortDirection: 'asc', image: true },  
           { key: 'descriptions', label: 'Item', sortable: true, sortDirection: 'asc' },          
           { key: 'optimum_level', label: 'Kuantiti Optimum', sortable: true, sortDirection: 'asc' },
           { key: 'minimum_level', label: 'Kuantiti Minimum', sortable: true, sortDirection: 'asc' },
@@ -465,9 +477,9 @@
 </script>
 
 
-<style type="text/css">
+<style type="text/css" scoped>
   #em_photo{
-    height: 40px;
-    width: 40px;
+    height: 60px;
+    width: 60px;
   }
 </style>

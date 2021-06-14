@@ -162,7 +162,7 @@
                        <label class="custom-file-label" for="customFile" >Pilih Imej</label>
                         
                     </div>
-                     <div class="form-group col-md-3" hidden>                     
+                     <div class="form-group col-md-3">                     
                     <img :src="forms.image" alt="" style="height:120px; width:120px;">
                   
                     </div>

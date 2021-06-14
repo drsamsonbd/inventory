@@ -35,13 +35,13 @@ class OptimumlevelController extends Controller
     public function view($id)
     {   
         $optimum = DB::table('optimumlevels')->where('optimumlevels.department_id',$id)
-       
        ->join('items','items.id','optimumlevels.item_id')
        // ->join('stocks','stocks.item_id','optimumlevels.item_id')
        // ->join('departments','departments.id','optimumlevels.department_id')
-       ->select('items.descriptions','optimumlevels.*')
+       ->select('items.descriptions','items.image','optimumlevels.*')
        ->orderBy('items.descriptions','asc')
-       ->get();
+       ->get()
+       ;
           return response()->json($optimum);
     }
 
@@ -81,13 +81,13 @@ class OptimumlevelController extends Controller
     }
     public function showbydept($id)// by department
     {
-        $optimum = DB::table('optimumlevels')->where('optimumlevels.id',$id)
+        $optimum = DB::table('optimumlevels')->where('optimumlevels.department_id',$id)
         ->join('items','items.id','optimumlevels.item_id')
         // ->join('stocks','stocks.item_id','optimumlevels.item_id')
         // ->join('departments','departments.id','optimumlevels.department_id')
         ->select('items.descriptions','optimumlevels.id', 'optimumlevels.optimum_level', 'optimumlevels.minimum_level')
-        ->orderBy('items.descriptions','asc')
-        ->get();
+      
+        ->paginate(2);
 
         return response()->json($optimum);
     }

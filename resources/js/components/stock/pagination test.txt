@@ -1,0 +1,176 @@
+
+<template>
+  
+  <div>
+       <b-breadcrumb :items="itemize"></b-breadcrumb>
+   <div class="container-fluid" id="container-wrapper">
+ 
+
+
+  <div class="row">
+<div class="col-sm-12 col-12">   
+
+     <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-6 col-6 overflow-auto" v-for="item in items" :key="item.id"
+      >
+
+             <button class="btn btn-sm" @click.prevent="AddToCart(item.id)">
+             <div class="card" style="width: 8.5rem; margin-bottom: 5px;">
+              <img v-for="item in items"  v-bind:key="item.id" :src="item.image" id="em_photo" class="card-img-top">
+    <div class="card-body">
+    <h6 class="card-title" v-for="item in items"  v-bind:key="item.id" >{{ item.descriptions}}</h6>
+    <span class="badge badge-success" v-if="item.item_quantity  >= 1 ">Available {{ item.item_quantity }}  </span> 
+    <span class="badge badge-danger" v-else=" ">Stock Out </span> 
+                
+              </div>
+          
+            </div>
+            
+            </button>
+         
+        </div>   
+          
+      </div>
+      <div class="row">
+            <div class="col-md-6">
+                <nav>
+                    <ul class="pagination">
+                       <li v-bind:class="{disabled:!pagination.first_link}" class="page-item"><a href="#" @click="viewItem(pagination.first_link)" class="page-link">&laquo;</a></li>
+                        <li v-bind:class="{disabled:!pagination.prev_link}" class="page-item"><a href="#" @click="viewItem(pagination.prev_link)" class="page-link">&lt;</a></li>
+                        <li v-for="n in pagination.last_page" v-bind:key="n" v-bind:class="{active:!pagination.current_page == n}" class="page-item"><a href="#" @click="viewItem(pagination.path_page + n)" class="page-link">{{n}}</a></li>
+                        <li v-bind:class="{disabled:!pagination.next_link}" class="page-item"><a href="#" @click="viewItem(pagination.next_link)" class="page-link">&gt;</a></li>                   
+                        <li v-bind:class="{disabled:!pagination.last_link}" class="page-item"><a href="#" @click="viewItem(pagination.last_link)" class="page-link">&raquo;</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-4">
+                Page:{{pagination.from_page}}-{{pagination.to_page}}
+                Total: {{pagination.total_page}}
+            </div>
+      </div>
+
+     </div>
+     </div>
+     </div>
+  </div>  <!--  End TBAS HOME -->
+
+
+
+ 
+
+
+
+
+
+</template>
+
+
+
+<script type="text/javascript">
+  
+  export default {
+    
+    created(){
+      if (!User.loggedIn()) {
+        this.$router.push({name: '/'})
+      }
+    },
+
+    created(){
+    this.allitem(); 
+    this.viewItem();
+
+      
+
+   }, 
+ data(){
+      return{
+
+        items:[],
+        item:{
+            id:'',
+            descriptions:'',
+            image:''
+        },
+        categories:'',       
+       
+        pagination:{
+            current_page:'',
+
+
+        },
+ 
+        errors:'',
+
+
+
+              itemize: [
+          {
+            text: 'Dashboard',
+            href: '/'
+          },
+          {
+            text: 'Items',
+            href: '#/items'
+          },
+           {
+            text: 'Pengeluaran',
+            active: true
+          },
+        ],
+      }
+      
+    },
+
+ 
+  methods:{
+
+    allitem(){
+
+     let self = this;  
+     axios.get('/api/items/')
+      .then(function (response) {
+        self.items = response.data;
+        }) 
+    },
+
+    viewItem(pagi) {
+        pagi = pagi ||'/api/items';
+         axios.get(pagi)('/api/items/')
+        .then(res =>{
+            this.items = res.data;
+            
+            this.pagination = {
+                current_page: res.meta.current_page,
+                last_page: res.meta.last_page,
+                from_page: res.meta.from_page,
+                to_page: res.meta.to_page,
+                total_page: res.meta.total_page,
+                path_page: res.meta.path+"?page=",
+                fist_link: res.links.first,
+                last_link: res.links.prev,
+                next_link: res.links.next
+
+            }
+
+        })
+            
+        },
+
+
+
+   
+
+    }  
+
+  } 
+
+</script>
+
+
+<style type="text/css" scoped>
+  #em_photo{
+    height: 100px;
+    width: 135px;
+  }
+</style>

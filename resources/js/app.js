@@ -22,13 +22,13 @@ import 'vue-select/dist/vue-select.css';
  window.Notification = Notification
 
  // vue pagination
- Vue.component('pagination', require('laravel-vue-pagination'));
+ import Pagination from 'vue-pagination-2';
+ Vue.component('pagination', Pagination);
 
 
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 
-import Pagination from 'vue-pagination-2';
-Vue.component('pagination', Pagination);
+
 
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)

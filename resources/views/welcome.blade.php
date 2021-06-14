@@ -82,8 +82,8 @@
         <div id="collapseStock" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
            
-            <router-link class="collapse-item" to="/stock">Keluar</router-link>
-          <router-link class="collapse-item" to="/category">Terima</router-link>
+            <router-link class="collapse-item" to="/stock/out">Pengeluaran</router-link>
+          <router-link class="collapse-item" to="/category">Penerimaan</router-link>
            <router-link class="collapse-item" to="/category">Pembelian</router-link>
             <router-link class="collapse-item" to="/stock-setting">Tetapan</router-link>
           </div>
