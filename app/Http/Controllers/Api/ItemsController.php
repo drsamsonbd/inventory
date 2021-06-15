@@ -17,7 +17,7 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $items = DB::table('items')
+        $items = Items::all();
        // $items = DB::table('items')
        //->join('categories','items.category_id','categories.id')
       //->join('skus','items.category_id','skus.id')
@@ -25,7 +25,7 @@ class ItemsController extends Controller
       // ->select('items.*','categories.category_name','skus.sku','pkus.pku')
       //  ->orderBy('descriptions','asc')
       //  ->get();
-      ->paginate(20);
+      
         return response()->json($items);
 
    
