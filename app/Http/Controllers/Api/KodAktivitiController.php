@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
 
 use App\Models\KodAktiviti;
 use Illuminate\Http\Request;
@@ -42,12 +42,12 @@ class KodAktivitiController extends Controller
         $validateData = $request->validate([
             'aktiviti_code'=>'required|unique:kod_aktivitis|min:3',
             'aktiviti_descriptions'=>'required|min:6',
-            'objek_lanjut_id'=>'required',
+            'ol_code'=>'required',
         ]);
         $aktiviti = new KodAktiviti();
         $aktiviti->aktiviti_code = $request->aktiviti_code;
         $aktiviti->aktiviti_descriptions = $request->aktiviti_descriptions;
-        $aktiviti->objek_lanjut_id = $request->objek_lanjut_id;
+        $aktiviti->ol_code = $request->ol_code;
         $aktiviti->save();
     }
 
@@ -86,7 +86,7 @@ class KodAktivitiController extends Controller
         $data = array();
         $data['aktiviti_code'] = $request->aktiviti_code;
         $data['aktiviti_descriptions'] = $request->aktiviti_descriptions;
-        $data['objek_lanjut_id'] = $request->objek_lanjut_id;
+        $data['ol_code'] = $request->ol_code;
         DB::table('kod_aktivitis')->where('id',$id)->update($data);
     }
 

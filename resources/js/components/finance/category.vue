@@ -40,22 +40,41 @@
       </b-modal>
 
 
- <!--PKU
+ <!--kod aktiviti insert-->
 
-    <b-modal ref="pku-insert-modal" hide-footer title="PKU">
+    <b-modal ref="aktiviti-insert-modal" hide-footer title="Kod Aktiviti">
     
-            <form class="user" @submit.prevent="pkuInsert">
+            <form class="user" @submit.prevent="aktivitiInsert">
 
               <div class="form-group">
                 <div class="form-row">
                   <div class="col-md-12">
-              <input type="text" class="form-control" id="Pku" placeholder="Sila masukkan PKU" v-model="formp.pku">
-              <small class="text-danger" v-if="errors.pku"> {{ errors.pku[0] }} </small>          
+              <input type="text" class="form-control" id="aktiviti" placeholder="Sila masukkan Kod Aktiviti" v-model="forma.aktiviti_code">
+              <small class="text-danger" v-if="errors.aktiviti_code"> {{ errors.aktiviti_code[0] }} </small>          
             </div> 
             </div>
         </div>
+         <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-12">
+              <input type="text" class="form-control" id="desc aktiviti" placeholder="Deskripsi" v-model="forma.aktiviti_descriptions">
+              <small class="text-danger" v-if="errors.aktiviti_descriptions"> {{ errors.aktiviti_descriptions[0] }} </small>          
+            </div> 
+            </div>
+        </div>
+        <br>
+            <b-col>
+                     <label><b>Kod OS</b></label><br>
+                     <select class="form-control" id="ol-code" v-model="forma.ol_code">
+                        <option  v-for="ol_code in olitems" v-bind:key="ol_code.ol_code"> {{ol_code.ol_code}}</option>
+                        
+                        </select>
+                         <small class="text-danger" v-if="errors.ol_code">{{errors.ol_code[0]}}</small>
+                
+
+                    </b-col> <br>
           <div class="form-group">
-          <button type="submit" id="pku-insert-btn" class="btn btn-primary btn-block">Simpan</button>
+          <button type="submit" id="aktiviti-insert-btn" class="btn btn-primary btn-block">Simpan</button>
         </div>
         
       </form>      
@@ -136,27 +155,46 @@
       </form>
            
    </b-modal>
- <!--PKU
-  <b-modal ref="pku-update-modal" hide-footer title="Kemaskini">     
-           <form class="user" @submit.prevent="PKUUpdate">
+ <!--kod aktivti-->
+  <b-modal ref="aktiviti-update-modal" hide-footer title="Kemaskini Kod Aktiviti">     
+           <form class="user" @submit.prevent="akltivitiUpdate">
          <div class="form-group" hidden>
-          <label>PKU ID:</label>
-          <input type="hidden" class="form-control" id="pkuID" placeholder="ID" v-model="formps.id">
+          <label>Aktiviti ID:</label>
+          <input type="hidden" class="form-control" id="aktivitiID" placeholder="ID" v-model="formas.id">
           </div>
+          <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-12">
+              <input type="text" class="form-control" id="aktiviti" placeholder="Sila masukkan Kod Aktiviti" v-model="formas.aktiviti_code">
+              <small class="text-danger" v-if="errors.aktiviti_code"> {{ errors.aktiviti_code[0] }} </small>          
+            </div> 
+            </div>
+        </div>
+         <div class="form-group">
+                <div class="form-row">
+                  <div class="col-md-12">
+              <input type="text" class="form-control" id="desc aktiviti" placeholder="Deskripsi" v-model="formas.aktiviti_descriptions">
+              <small class="text-danger" v-if="errors.aktiviti_descriptions"> {{ errors.aktiviti_descriptions[0] }} </small>          
+            </div> 
+            </div>
+        </div>
+        <br>
+            <b-col>
+                     <label><b>Kod OS</b></label><br>
+                     <select class="form-control" id="ol-code" v-model="formas.ol_code">
+                        <option  v-for="ol_code in olitems" v-bind:key="ol_code.ol_code"> {{ol_code.ol_code}}</option>
+                        
+                        </select>
+                         <small class="text-danger" v-if="errors.ol_code">{{errors.ol_code[0]}}</small>
+                
+
+                    </b-col> <br>
         <div class="form-group">
-          <div class="form-row">
-            <div class="col-md-12">
-         <input type="text" class="form-control" id="updatePKU" placeholder="Masukkan PKU" v-model="formps.pku">
-          <small class="text-danger" v-if="errors.pku"> {{ errors.pku[0] }} </small>   
-            </div>             
-          </div>
-        </div> 
-        <div class="form-group">
-          <button type="submit" id="pku-update-btn"  class="btn btn-primary btn-block">Kemaskini</button>
+          <button type="submit" id="aktiviti-update-btn"  class="btn btn-primary btn-block">Kemaskini</button>
         </div>        
       </form>
            
-   </b-modal>-->
+   </b-modal>
 <!-- ol -->
   <b-modal ref="ol-update-modal" hide-footer title="Kemaskini">     
            <form class="user" @submit.prevent="olUpdate">
@@ -453,7 +491,7 @@
           
           <b-col sm="3" class="my-1">
       
-            <b-button pill size="sm" variant="outline-secondary" id="show-btn" @click="showModalol"> <i class="fas fa-plus"></i>&nbsp;Tambah</b-button>
+            <b-button pill size="sm" variant="outline-secondary" id="show-btn" @click="showModalaktiviti"> <i class="fas fa-plus"></i>&nbsp;Tambah</b-button>
             </b-col>
         
             <b-col sm="6" class="my-1">
@@ -490,8 +528,8 @@
             >
               <b-form-select
                 id="per-page-select"
-                v-model="olperPage"
-                :options="olpageOptions"
+                v-model="aktivitiperPage"
+                :options="aktivitipageOptions"
                 size="sm"
               ></b-form-select>
             </b-form-group>
@@ -501,15 +539,15 @@
         </b-row>
 
           <b-table head-variant
-          :items="olitems"
-          :fields="olfields"
-          :current-page="olcurrentPage"
-          :per-page="olperPage"
-          :filter="olfilter"
-          :filter-included-fields="olfilterOn"
-          :sort-by.sync="olsortBy"
-          :sort-desc.sync="olsortDesc"
-          :sort-direction="olsortDirection"
+          :items="aktivitiitems"
+          :fields="aktivitifields"
+          :current-page="aktiviticurrentPage"
+          :per-page="aktivitiperPage"
+          :filter="aktivitifilter"
+          :filter-included-fields="aktivitifilterOn"
+          :sort-by.sync="aktivitisortBy"
+          :sort-desc.sync="aktivitisortDesc"
+          :sort-direction="aktivitisortDirection"
           stacked="md"
           show-empty
              small
@@ -523,10 +561,10 @@
             </template>
 
             <template #cell(actions)="row">
-                <b-button size="sm" id="ol-toggle-btn"  @click="toggleModalol(row.item.id)" class="mr-1" v-b-tooltip.hover title="Edit">
+                <b-button size="sm" id="ol-toggle-btn"  @click="toggleModalaktiviti(row.item.id)" class="mr-1" v-b-tooltip.hover title="Edit">
               <i class="fas fa-edit"></i>
                 </b-button>
-                <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteol(row.item.id)"  v-b-tooltip.hover title="Delete">
+                <b-button size="sm" class="btn btn-sm btn-danger" @click="deleteaktiviti(row.item.id)"  v-b-tooltip.hover title="Delete">
                 <i class="fas fa-trash-alt"></i>
                 </b-button>
             </template>
@@ -585,7 +623,7 @@
     },
    mounted(){ 
     this.allCategory();
-    //this.allPKU();
+    this.allaktiviti();
     this.allol();
    
     let $LoggedRoles = localStorage.getItem('roles');
@@ -649,32 +687,41 @@
           { key: 'actions', label: 'Actions' },
 
         ],
-//PKU
- //         formp:{
-  //        pku: null,
-          
-      
-    //    },
-      //    formps:{
-        //  pku: null,
-          
-      
- //     },
+
+        ol_codes:[],
+//Aktiviti
+         forma:{
+       aktiviti_code: null,
+       aktiviti_descriptions: null,
+       ol_code:null,
+   
+      },
+       formas:{
+         aktiviti_code: null,
+       aktiviti_descriptions: null,
+       ol_code:null,
+       
+   
+     },
 
 
- //     pkuperPage: 5,
- //     pkucurrentPage: 1,
- //     pkupageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
- //     pkusortBy: 'pku',
- //     pkusortDesc: false,
- //     pkusortDirection: 'asc',
- //     pkufilter: null,
- //     pkufilterOn: [],
- //       pkuitems: [],
- //       pkufields: [
- //        { key: 'pku', label: 'PKU', sortable: true, sortDirection: 'asc' },
- //         { key: 'actions', label: 'Actions' },
- //        ],
+     aktivitiperPage: 5,
+     aktiviticurrentPage: 1,
+     aktivitipageOptions: [5, 10, 15, 25, { value: 100, text: "Show a lot" }],
+     aktivitisortBy: 'aktiviti_code',
+     aktivitisortDesc: false,
+     aktivitisortDirection: 'asc',
+     aktivitifilter: null,
+     aktivitifilterOn: [],
+       aktivitiitems: [],
+       aktivitifields: [
+        { key: 'aktiviti_code', label: 'Kod Aktiviti', sortable: true, sortDirection: 'asc' },
+        
+        { key: 'aktiviti_descriptions', label: 'Deskripsi', sortable: true, sortDirection: 'asc' },
+        
+        { key: 'lo_code', label: 'Kod Objek Lanjut', sortable: true, sortDirection: 'asc' },
+         { key: 'actions', label: 'Actions' },
+        ],
 
 
 
@@ -724,9 +771,9 @@
       categoryrows() {
         return this.categoryitems.length
       },
-    //   pkurows() {
-    //    return this.pkuitems.length
-    //  },
+       aktivitirows() {
+        return this.aktivitiitems.length
+      },
        olrows() {
         return this.olitems.length
       }
@@ -746,16 +793,16 @@
         self.$router.push({ path: '/login' });
       });
     },
- //   allPKU(){
- //  let self = this;
- //   axios.get('/api/pku/')
- //    .then(function (response) {
- //      self.pkuitems = response.data;
- //    }).catch(function (error) {
- //      console.log(error);
- //      self.$router.push({ path: '/login' });
- //    });
- //  },
+   allaktiviti(){
+  let self = this;
+   axios.get('/api/finance/activity')
+    .then(function (response) {
+      self.aktivitiitems = response.data;
+    }).catch(function (error) {
+      console.log(error);
+      self.$router.push({ path: '/login' });
+    });
+  },
     allol(){
     let self = this;
      axios.get('/api/ol/')
@@ -800,35 +847,35 @@
       },
 
 
-   //  deletePKU(id){
-   //           Swal.fire({
-   //             title: 'Anda pasti?',
-   //             text: "Tindakan ini memadamkan data!",
-   //             icon: 'warning',
-   //             showCancelButton: true,
-   //             confirmButtonColor: '#3085d6',
-   //             cancelButtonColor: '#d33',
-   //             confirmButtonText: 'Teruskan'
-   //          }).then((result) => {
-   //         if (result.value) {
-   //           axios.delete('/api/pku/'+id)
-   //          .then(() => {
-   //           this.allPKU();
-   //                    
-   //             })
-   //             .catch(() => {
-   //             
-   //             })
-   //               Swal.fire(
-   //                 'Deleted!',
-   //                 'Telah dipadamkan.',
-   //                 'success'
-   //               )
-   //             }
-   //           })
+     deleteaktiviti(id){
+              Swal.fire({
+                title: 'Anda pasti?',
+                text: "Tindakan ini memadamkan data!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Teruskan'
+             }).then((result) => {
+            if (result.value) {
+              axios.delete('/api/finance/activity/'+id)
+             .then(() => {
+              this.allaktiviti();
+                       
+                })
+                .catch(() => {
+                
+                })
+                  Swal.fire(
+                    'Deleted!',
+                    'Telah dipadamkan.',
+                    'success'
+                  )
+                }
+              })
 
-   // },
-        deleteol(id){
+    },
+      deleteol(id){
                 Swal.fire({
                   title: 'Anda pasti?',
                   text: "Tindakan ini memadamkan data!",
@@ -863,9 +910,9 @@
         this.$refs['category-insert-modal'].show()
       },
 
-  //     showModalPKU() {
-  //     this.$refs['pku-insert-modal'].show()
-  //   },
+       showModalaktiviti() {
+       this.$refs['aktiviti-insert-modal'].show()
+     },
 
         showModalol() {
         this.$refs['ol-insert-modal'].show()
@@ -882,11 +929,12 @@
   	    .then(({data}) => (this.forms = data))
         this.$refs['update-modal'].toggle('#toggle-btn')       
       },
- //      toggleModalPKU(id) {
- //       axios.get('/api/pku/'+id)
- //	    .then(({data}) => (this.formps = data))
- //      this.$refs['pku-update-modal'].toggle('#pku-toggle-btn')       
- //    },
+      
+       toggleModalaktiviti(id) {
+        axios.get('/api/finance/activity/'+id)
+ 	    .then(({data}) => (this.formas = data))
+       this.$refs['aktiviti-update-modal'].toggle('#aktiviti-toggle-btn')       
+     },
       toggleModalol(id) {
          axios.get('/api/ol/'+id) 
         .then(({data}) => (this.formols = data))
@@ -906,17 +954,17 @@
           .catch(error=> this.errors = error.response.data.errors)
       
         },
-  //     pkuInsert(){
-  //     axios.post('/api/pku',this.formp)
-  //     .then(() => { 
-  //     this.$refs['pku-insert-modal'].hide('#pku-insert-btn')  
-  //      this.allPKU();
-  //     Notification.success()
-  //    })
-  //       .catch(error=> this.errors = error.response.data.errors)
-  //   
-  //     },
-         olInsert(){
+        aktivitiInsert(){
+        axios.post('/api/finance/activity',this.forma)
+        .then(() => { 
+        this.$refs['aktiviti-insert-modal'].hide('#aktiviti-insert-btn')  
+         this.allaktiviti();
+        Notification.success()
+       })
+          .catch(error=> this.errors = error.response.data.errors)
+
+        },
+        olInsert(){
         axios.post('/api/ol',this.formol)
         .then(() => { 
         this.$refs['ol-insert-modal'].hide('#ol-insert-btn')  
@@ -940,17 +988,17 @@
        .catch(error =>this.errors = error.response.data.errors)
        
      },
-  //    PKUUpdate(){
-  //	  let id = this.formps.id
-  //     axios.patch('/api/pku/'+id,this.formps)
-  //     .then(() => { 
-  //       this.$refs['pku-update-modal'].hide('#pku-update-btn')
-  //      this.allPKU();
-  //      Notification.success()
-  //     })
-  //     .catch(error =>this.errors = error.response.data.errors)
-  //     
-  //   },
+      aktivitiUpdate(){
+  	  let id = this.formas.id
+       axios.patch('/api/finance/activity/'+id,this.formas)
+       .then(() => { 
+         this.$refs['aktiviti-update-modal'].hide('#aktiviti-update-btn')
+        this.allaktiviti();
+        Notification.success()
+       })
+       .catch(error =>this.errors = error.response.data.errors)
+       
+     },
   olUpdate(){
   	  let id = this.formols.id
        axios.patch('/api/ol/'+id,this.formols)

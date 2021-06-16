@@ -11,6 +11,6 @@ class KodAktiviti extends Model
     protected $fillable = [
         'aktiviti_code',
         'akitiviti_descriptions',
-        'objek_lanjut_id',          
+        'ol_code',          
     ];
 }

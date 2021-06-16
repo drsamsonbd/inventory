@@ -31,7 +31,7 @@ Route::apiResource('/items', 'Api\ItemsController');
 Route::apiResource('/pku', 'Api\PkuController');
 Route::apiResource('/sku', 'Api\SkuController');
 Route::apiResource('/optimum', 'Api\OptimumlevelController');
-
+Route::apiResource('/finance/activity', 'Api\KodAktivitiController');
 
 Route::post('/password/update/{id}', 'Api\UserController@edit');
 Route::post('/password/selfupdate/{id}', 'Api\UserController@selfupdate');
